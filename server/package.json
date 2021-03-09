@@ -1,0 +1,15 @@
+{
+  "name": "urban-services",
+  "version": "1.0.0",
+  "description": "home services and products similar to urban company and amazon features combined in one",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "rahul-singh-au9"
+  },
+  "author": "rahul and kushal",
+  "license": "ISC"
+}
