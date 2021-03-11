@@ -1,17 +1,23 @@
 const express = require("express");
 const cors = require("cors");
 require("./db/connection");
-const userRoutes = require("./routes/userRoutes");
-const dotenv = require("dotenv");
-dotenv.config();
+const userRoutes = require("./routes/userRouter");
+require("dotenv").config();
+const morgan = require("morgan");
 
 // Init app
 const app = express();
 
-const PORT = process.env.PORT || 3001;
+// middlewares
 
+// to communicate between different origins
 app.use(cors());
+
+// for post requests
 app.use(express.json());
+
+// to get info when a route is being hit
+app.use(morgan("dev"));
 
 // HOMEPAGE
 app.get("/", (req, res)=>{
