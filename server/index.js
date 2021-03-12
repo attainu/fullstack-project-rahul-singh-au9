@@ -5,6 +5,8 @@ const userRoutes = require("./routes/userRouter");
 require("dotenv").config();
 const morgan = require("morgan");
 
+const PORT = 3001
+
 // Init app
 const app = express();
 
@@ -34,7 +36,7 @@ app.get("*", (req, res) => {
 })
 
 // CONNECTING TO THE SERVER
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port: http://localhost:${process.env.PORT}`)
+app.listen(PORT, () => {
+  console.log(`Server running on port: http://localhost:${PORT}`)
 }
 )

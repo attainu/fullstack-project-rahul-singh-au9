@@ -1,12 +1,12 @@
 import {AUTH} from "../constants/actionTypes";
-import * as api from "../api/index";
+import * as api from "../api/index.js";
 
 // SIGN-UP ACTION
 export const signup = (formData, router) => async (dispatch) => {
 
   try{
-    // signup user
-    const {data} = await api.signup(formData)
+
+    const {data} = await api.signUp(formData)
 
     dispatch({
       type: AUTH,
@@ -20,13 +20,12 @@ export const signup = (formData, router) => async (dispatch) => {
   }
 };
 
-
 // SIGN-IN USER
 export const signin = (formData, router) => async (dispatch) => {
 
   try{
-    // signup user
-    const { data } = await api.signin(formData)
+
+    const { data } = await api.signIn(formData)
 
     dispatch({
       type: AUTH,

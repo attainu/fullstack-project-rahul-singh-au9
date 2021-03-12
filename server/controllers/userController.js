@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 require("dotenv").config();
 
+const SECRET = "this is the super secret for hashing the user password";
 
 const signup = async (req, res) => {
 
@@ -10,7 +11,7 @@ const signup = async (req, res) => {
 
   try{
 
-    const oldUser = await userModel.findOne({email} || {phone});
+    const oldUser = await userModel.findOne({email});
 
     if(oldUser) {
       return res.status(400).json({message: "User already Exists!"})
@@ -27,7 +28,7 @@ const signup = async (req, res) => {
 
     });
 
-    const token = jwt.sign({email: result.email, id: result._id}, process.env.SECRET, {expiresIn: "1h"});
+    const token = jwt.sign({email: result.email, id: result._id}, SECRET, {expiresIn: "1h"});
 
     res.status(201).json({result, token});
 

@@ -39,9 +39,14 @@ const userSchema = mongoose.Schema({
 
   id:{
     type: String,
-  }
+  },
 
-});
+  stripe_account_id : "",
+  stripe_seller: {},
+  stripeSession: {}
+
+},{timestamps: true}
+);
 
 // MODEL
 // we will create a new collection
