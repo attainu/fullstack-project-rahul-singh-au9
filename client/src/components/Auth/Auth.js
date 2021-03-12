@@ -100,7 +100,7 @@ const Auth = () => {
 
                     </Grid>
 
-                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} disabled={!form.email || !form.password}>
                         { isSignup ? "Sign Up" : "Sign In" }
                     </Button>
 
