@@ -1,5 +1,6 @@
 import {AUTH} from "../constants/actionTypes";
 import * as api from "../api/index.js";
+import { toast } from 'react-toastify';
 
 // SIGN-UP ACTION
 export const signup = (formData, router) => async (dispatch) => {
@@ -14,9 +15,11 @@ export const signup = (formData, router) => async (dispatch) => {
     })
 
     router.push("/")
+    toast.success("Registered Successfully")
 
   } catch(error){
     console.log(error);
+    toast.error(error.response.data)
   }
 };
 
@@ -33,8 +36,10 @@ export const signin = (formData, router) => async (dispatch) => {
     })
 
     router.push("/")
+    toast.success("Logged-In Successfully")
 
   } catch(error){
-    console.log(error);
+    console.log(error)
+    toast.error(error.response.data)
   }
 };
