@@ -34,7 +34,16 @@ const signup = async (req, res) => {
 
     const token = jwt.sign({email: result.email, id: result._id}, SECRET, {expiresIn: "1h"});
 
-    res.status(201).json({result, token});
+    res.status(201).json({
+      result:{
+        _id: result._id,
+        name: result.name,
+        phone: result.phone,
+        email: result.email,
+        city: result.city,
+        createdAt: result.createdAt,
+        updatedAt: result.updatedAt
+    }, token});
 
   }catch(err){
 
@@ -72,7 +81,16 @@ const signin = async (req, res) => {
       id: oldUser._id
     }, SECRET, {expiresIn: "1h"});
 
-    res.status(200).json({result: oldUser, token})
+    res.status(200).json({
+      result: {
+        _id: oldUser._id,
+        name: oldUser.name,
+        phone: oldUser.phone,
+        email: oldUser.email,
+        city: oldUser.city,
+        createdAt: oldUser.createdAt,
+        updatedAt: oldUser.updatedAt
+    }, token})
     
   } catch (error) {
 
