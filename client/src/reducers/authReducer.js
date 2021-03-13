@@ -1,6 +1,14 @@
 import {AUTH, LOGOUT} from "../constants/actionTypes";
 
-const authReducer = (state= {authData : null}, action) => {
+// on page refresh we are getting the data from local storage and putting it into redux storage so data will not be lost on page refresh
+let authData;
+if(localStorage.getItem("profile")){
+  authData = JSON.parse(localStorage.getItem("profile"));
+} else{
+  authData = null
+}
+
+const authReducer = (state= authData, action) => {
 
   switch (action.type) {
     case AUTH:
