@@ -6,16 +6,19 @@ import { ToastContainer } from 'react-toastify';
 import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import Auth from './components/Auth/Auth';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import UserDashboard from './components/User/UserDashboard';
 
 const App = () => {
     return (
         <BrowserRouter>
-            <Container maxWidth="lg">
+            <Container maxWidth='lg'>
                 <Navbar/>
-                <ToastContainer position="top-center"/>
+                <ToastContainer position='top-center'/>
                 <Switch>
-                    <Route path="/" exact component={Home}/>
-                    <Route path="/auth" exact component={Auth}/>
+                    <Route path='/' exact component={Home}/>
+                    <Route path='/auth' exact component={Auth}/>
+                    <ProtectedRoute path='/dashboard' exact component={UserDashboard}/>
                 </Switch>
             </Container>
         </BrowserRouter>
