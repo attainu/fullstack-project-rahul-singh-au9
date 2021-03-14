@@ -8,6 +8,7 @@ import Navbar from './components/Navbar/Navbar';
 import Auth from './components/Auth/Auth';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Dashboard from './components/User/Dashboard';
+import Profile from './components/User/Profile/Profile';
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path='/' exact component={Home}/>
                     <Route path='/auth' exact component={Auth}/>
                     <ProtectedRoute path='/dashboard' exact component={Dashboard}/>
+                    <ProtectedRoute path='/profile' exact component={Profile}/>
                 </Switch>
             </Container>
         </BrowserRouter>

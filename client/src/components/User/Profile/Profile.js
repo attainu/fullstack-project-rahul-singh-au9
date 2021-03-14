@@ -21,7 +21,7 @@ export default function RecipeReviewCard() {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe"
+          <Avatar
           className={classes.avatar}
           src={result.ImageUrl}
           >

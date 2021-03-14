@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Balance() {
+export default function Payout() {
   const classes = useStyles();
 
   return (
@@ -34,7 +34,7 @@ export default function Balance() {
           Word of the Day
         </Typography>
         <Typography variant="h5" component="h2">
-          Pending Balance
+          Payout Settings
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           adjective

@@ -6,6 +6,7 @@ export default makeStyles((theme) => ({
 
     root: {
     maxWidth: 345,
+    marginLeft: '455px'
     },
 
     media: {

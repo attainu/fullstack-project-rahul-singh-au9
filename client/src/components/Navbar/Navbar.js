@@ -61,12 +61,14 @@ const Navbar = () => {
                       <DashboardIcon style={{ fontSize: 40 }} color="primary"/>
                   </Link>
 
+                  <Link to='profile'>
                   <Avatar className={classes.purple}
                   alt={user?.result.name}
                   src={user?.result.ImageUrl}
                   >
                     {user?.result.name.charAt(0)}
                   </Avatar>
+                  </Link>
 
                   <Typography className={classes.userName} variant="h6">
                       {user?.result.name}
