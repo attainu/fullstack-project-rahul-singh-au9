@@ -1,11 +1,13 @@
 import React from 'react';
+import Profile from './Profile/Profile';
 
-const UserDashboard = () => {
+const Dashboard = () => {
   return (
     <div>
       <h1> <center>User Dashboard</center> </h1>
+      <Profile/>
     </div>
   )
 }
 
-export default UserDashboard;
+export default Dashboard;

@@ -7,7 +7,7 @@ import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import Auth from './components/Auth/Auth';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import UserDashboard from './components/User/UserDashboard';
+import Dashboard from './components/User/Dashboard';
 
 const App = () => {
     return (
@@ -18,7 +18,7 @@ const App = () => {
                 <Switch>
                     <Route path='/' exact component={Home}/>
                     <Route path='/auth' exact component={Auth}/>
-                    <ProtectedRoute path='/dashboard' exact component={UserDashboard}/>
+                    <ProtectedRoute path='/dashboard' exact component={Dashboard}/>
                 </Switch>
             </Container>
         </BrowserRouter>

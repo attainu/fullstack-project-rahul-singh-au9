@@ -3,6 +3,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import useStyles from "./styles";
 import {AppBar, Typography, Toolbar, Avatar, Button} from "@material-ui/core";
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import {LOGOUT} from "../../constants/actionTypes";
 import decode from 'jwt-decode';
 
@@ -55,6 +56,10 @@ const Navbar = () => {
             {
               user?.result? (
                 <div className = {classes.profile}>
+
+                  <Link to="/dashboard">
+                      <DashboardIcon style={{ fontSize: 40 }} color="primary"/>
+                  </Link>
 
                   <Avatar className={classes.purple}
                   alt={user?.result.name}

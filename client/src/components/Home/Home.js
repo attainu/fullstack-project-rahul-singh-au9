@@ -5,9 +5,7 @@ import Cards from './Card/Card'
 import Footer from './Footer'
 import useStyles from './styles';
 
-
 const Home = () => {
-
     const classes = useStyles();
 
     return (
@@ -23,7 +21,6 @@ const Home = () => {
           </AppBar> */}
 
           <main>
-          {/* Hero unit */}
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
 
@@ -54,13 +51,9 @@ const Home = () => {
                     </Typography>
                 </Container>
             </div>
-
           <Cards/>
-
         </main>
-
-        <Footer/>
-
+          <Footer/>
       </React.Fragment>
     );
 }

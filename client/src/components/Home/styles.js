@@ -11,7 +11,8 @@ export default makeStyles((theme) => ({
       padding: theme.spacing(8, 0, 6),
       backgroundImage: `url(${"https://i.ibb.co/2j7k3fr/urbanservices.jpg"})`,
       backgroundSize: 'cover',
-      minHeight: '380px'
+      minHeight: '380px',
+      
     },
 
     heroButtons: {
