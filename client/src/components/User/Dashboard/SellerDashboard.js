@@ -1,13 +1,16 @@
 import React from 'react'
-import useStyles from "./styles";
-import { Grow, Container, Grid, Button } from "@material-ui/core";
-
+import { useSelector } from 'react-redux';
+// import useStyles from "./styles";
+import { Grow, Container, Grid, Button, Typography } from "@material-ui/core";
+import HomeIcon from '@material-ui/icons/Home';
 
 
 const SellerDashboard = () => {
   // const classes = useStyles();
+    const {auth} = useSelector((state) =>({...state}));
 
-    return (
+    const connected = () =>{
+        return(
         <Grow in>
         <Container>
             <Grid container justify="space-between" alignItems="stretch" spacing={3}>
@@ -25,7 +28,54 @@ const SellerDashboard = () => {
             </Grid>
         </Container>
         </Grow>
+        )
+    }
+
+    const notConnected = () => {
+        return(
+        <Grow in>
+        <Container>
+            <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+
+                <Grid item xs={12}>
+
+                    <HomeIcon style={{ fontSize: 50, marginLeft: '46%' }} color="primary"/>
+
+                    <h3 style={{marginLeft: '34%'}}>Set Up payouts to post your Services</h3>
+
+                    <Typography style={{marginLeft: '25%'}}>
+                        Urban Services Partner with Stripe to transfer earnings to your bank
+                    </Typography>
+
+                    <Button variant="contained"  color="primary"
+                    style={{marginLeft: '42%', marginTop: '15px'}}>
+                        Set Up Payouts
+                    </Button>
+
+                    <Typography style={{marginLeft: '30%', marginTop: '5px'}}>
+                        <small>You will be redirected to Stripe to complete the onboarding Process...</small>
+                    </Typography>
+                </Grid>
+
+            </Grid>
+        </Container>
+        </Grow>
+        )
+    }
+
+    return (
+        <>
+        {
+            auth && auth?.result && auth.result.stripe_seller && auth.result.stripe_seller.charges_enabled ? connected() : notConnected()
+        }
+
+        {/* {
+            <pre>
+                {JSON.stringify(auth, null, 4)}
+            </pre>
+        } */}
+        </>
     )
 }
 
-export default SellerDashboard
+export default SellerDashboard;
