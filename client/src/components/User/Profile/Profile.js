@@ -1,18 +1,12 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import {Card, CardHeader, CardMedia, CardContent, Avatar, IconButton, Typography} from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import useStyles from './styles';
 import {useSelector} from 'react-redux';
 import moment from 'moment';
 
 
-export default function RecipeReviewCard() {
+const Profile = () => {
   const classes = useStyles();
   const {auth} = useSelector((state) =>({...state}));
   const {result} = auth;
@@ -22,7 +16,7 @@ export default function RecipeReviewCard() {
       <CardHeader
         avatar={
           <Avatar
-          className={classes.avatar}
+          className={classes.purple}
           src={result.ImageUrl}
           >
               {result.name.charAt(0)}
@@ -68,3 +62,5 @@ export default function RecipeReviewCard() {
     </Card>
   );
 }
+
+export default Profile;

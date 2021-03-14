@@ -58,7 +58,7 @@ const Navbar = () => {
                 <div className = {classes.profile}>
 
                   <Link to="/dashboard">
-                      <DashboardIcon style={{ fontSize: 40 }} color="primary"/>
+                      <DashboardIcon style={{ fontSize: 40 }} className={classes.dashClr}/>
                   </Link>
 
                   <Link to='profile'>

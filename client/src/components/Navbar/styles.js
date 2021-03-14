@@ -49,4 +49,8 @@ export default makeStyles((theme) => ({
     backgroundColor: deepPurple[500],
   },
 
+  dashClr:{
+    color: deepPurple[500],
+  },
+
 }));

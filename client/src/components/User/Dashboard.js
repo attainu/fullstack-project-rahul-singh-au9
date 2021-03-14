@@ -4,14 +4,14 @@ import {useSelector} from 'react-redux';
 import DashboardProfile from './Profile/DashboardProfile';
 import Balance from './Balance/Balance';
 import Payout from './Payout/Payout';
-import { Grow, Container, Grid } from "@material-ui/core";
+import { Grow, Container, Grid, Paper, Card } from "@material-ui/core";
 import useStyles from './styles';
 
 
 const Dashboard = () => {
   const classes = useStyles();
   const {auth} = useSelector((state) =>({...state}));
-  // const {result} = auth;
+  const {result} = auth;
 
   return (
     <>
@@ -42,11 +42,14 @@ const Dashboard = () => {
                         </Grid>
                     </Grid>
               </Grid>
-          </Container>
 
-          <Container>
-              <Link> Your Bookings</Link>
-              <Link> Your Services</Link>
+              <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+                  <Grid item xs={12} sm={7} className={classes.flx}>
+                    <Card> <Link to='userDashboard'>Your Bookings</Link> </Card>
+                    <Card> <Link to='sellerDashboard'>Your Services</Link> </Card>
+                  </Grid>
+              </Grid>
+
           </Container>
       </Grow>
     </>

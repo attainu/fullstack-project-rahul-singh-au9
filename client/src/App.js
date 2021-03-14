@@ -9,6 +9,8 @@ import Auth from './components/Auth/Auth';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Dashboard from './components/User/Dashboard';
 import Profile from './components/User/Profile/Profile';
+import UserDashboard from './components/User/Dashboard/UserDashboard';
+import SellerDashboard from './components/User/Dashboard/SellerDashboard';
 
 const App = () => {
     return (
@@ -17,10 +19,12 @@ const App = () => {
                 <Navbar/>
                 <ToastContainer position='top-center'/>
                 <Switch>
-                    <Route path='/' exact component={Home}/>
-                    <Route path='/auth' exact component={Auth}/>
-                    <ProtectedRoute path='/dashboard' exact component={Dashboard}/>
-                    <ProtectedRoute path='/profile' exact component={Profile}/>
+                    <Route exact path='/' component={Home}/>
+                    <Route exact path='/auth' component={Auth}/>
+                    <ProtectedRoute exact path='/dashboard' component={Dashboard}/>
+                    <ProtectedRoute exact path='/profile' component={Profile}/>
+                    <ProtectedRoute exact path='/userDashboard' component={UserDashboard}/>
+                    <ProtectedRoute exact path='/sellerDashboard' component={SellerDashboard}/>
                 </Switch>
             </Container>
         </BrowserRouter>
