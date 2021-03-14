@@ -1,3 +1,12 @@
+// AUTH ACTION
+export const AUTH = "AUTH";
+
+// LOG-OUT ACTION
+export const LOGOUT = "LOGOUT";
+
+// CREATE_STRIPE_ACCOUNT ACTION
+export const CREATE_STRIPE_ACCOUNT = "CREATE_STRIPE_ACCOUNT";
+
 // CREATE ACTION
 export const CREATE = "CREATE";
 
@@ -12,9 +21,3 @@ export const FETCH_ALL = "FETCH_ALL";
 
 // LIKE ACTION
 export const LIKE = "LIKE";
-
-// AUTH ACTION
-export const AUTH = "AUTH";
-
-// LOG-OUT ACTION
-export const LOGOUT = "LOGOUT";

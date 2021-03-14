@@ -1,13 +1,22 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useState} from 'react'
+import { useSelector , useDispatch} from 'react-redux';
 // import useStyles from "./styles";
 import { Grow, Container, Grid, Button, Typography } from "@material-ui/core";
 import HomeIcon from '@material-ui/icons/Home';
+import {createStripeAccount} from '../../../actions/stripeAction';
 
 
 const SellerDashboard = () => {
   // const classes = useStyles();
+    const [loading, setLoading] = useState(false);
     const {auth} = useSelector((state) =>({...state}));
+    const dispatch = useDispatch();
+
+    const handleClick = () => {
+        // stripe setUp action
+        setLoading(true)
+        dispatch(createStripeAccount())
+    }
 
     const connected = () =>{
         return(
@@ -48,8 +57,10 @@ const SellerDashboard = () => {
                     </Typography>
 
                     <Button variant="contained"  color="primary"
-                    style={{marginLeft: '42%', marginTop: '15px'}}>
-                        Set Up Payouts
+                    style={{marginLeft: '42%', marginTop: '15px'}}
+                    onClick={handleClick}
+                    >
+                    {loading? "Processing..." : "Set Up Payouts"}    
                     </Button>
 
                     <Typography style={{marginLeft: '30%', marginTop: '5px'}}>
