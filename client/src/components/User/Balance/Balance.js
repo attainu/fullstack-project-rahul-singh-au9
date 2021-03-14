@@ -6,7 +6,8 @@ import {Card, CardActions, CardContent, Button, Typography} from '@material-ui/c
 const useStyles = makeStyles({
   root: {
     minWidth: 305,
-    minHeight: 212
+    minHeight: 212,
+    marginLeft: '20px'
   },
   bullet: {
     display: 'inline-block',

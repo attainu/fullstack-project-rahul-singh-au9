@@ -6,6 +6,7 @@ import Balance from './Balance/Balance';
 import Payout from './Payout/Payout';
 import { Grow, Container, Grid, Paper, Card } from "@material-ui/core";
 import useStyles from './styles';
+import DashboardNav from './Navbar/DashboardNav';
 
 
 const Dashboard = () => {
@@ -42,13 +43,14 @@ const Dashboard = () => {
                         </Grid>
                     </Grid>
               </Grid>
-
-              <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+              <br/> <br/>
+              <DashboardNav/>
+              {/* <Grid container justify="space-between" alignItems="stretch" spacing={3}>
                   <Grid item xs={12} sm={7} className={classes.flx}>
                     <Card> <Link to='userDashboard'>Your Bookings</Link> </Card>
                     <Card> <Link to='sellerDashboard'>Your Services</Link> </Card>
                   </Grid>
-              </Grid>
+              </Grid> */}
 
           </Container>
       </Grow>
