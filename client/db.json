@@ -1,0 +1,86 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "title": "salon for women",
+      "vendor":"kushal 1",
+      "price" :"2000rs",
+      "locations" :"['bangaluru','mangaluru','Delhi','Mumbai','Udupi']",
+      "body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus quis illum amet quia nihil iure facilis facere odit sapiente dicta reiciendis quibusdam aliquid sed nam corporis quae necessitatibus, ratione vitae ex in? Labore quod accusamus dolore aspernatur reprehenderit nihil ipsa, mollitia, ad consequatur hic quo adipisci nobis libero voluptas explicabo vitae dolor, rem similique impedit cumque. Sit quasi quisquam et pariatur enim ullam itaque. Eveniet quaerat fugiat magni architecto qui expedita ad corrupti totam nemo similique vitae, praesentium laudantium enim voluptatem, quasi, a tenetur in! Quod sed aliquid dicta fugit, reiciendis sapiente quibusdam nihil atque voluptatibus enim obcaecati, molestiae exercitationem."
+    },
+    {
+      "id": 2,
+      "title": "salon for men",
+      "vendor":"kushal 2",
+      "price" :"500rs",
+      "locations" :"['bangaluru','mangaluru','Delhi','Mumbai']",
+      "body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus quis illum amet quia nihil iure facilis facere odit sapiente dicta reiciendis quibusdam aliquid sed nam corporis quae necessitatibus, ratione vitae ex in? Labore quod accusamus dolore aspernatur reprehenderit nihil ipsa, mollitia, ad consequatur hic quo adipisci nobis libero voluptas explicabo vitae dolor, rem similique impedit cumque. Sit quasi quisquam et pariatur enim ullam itaque. Eveniet quaerat fugiat magni architecto qui expedita ad corrupti totam nemo similique vitae, praesentium laudantium enim voluptatem, quasi, a tenetur in! Quod sed aliquid dicta fugit, reiciendis sapiente quibusdam nihil atque voluptatibus enim obcaecati, molestiae exercitationem."
+    },
+    {
+      "id": 3,
+      "title": "massage for men",
+      "vendor":"kushal 2",
+      "price" :"1500rs",
+      "locations" :"['bangaluru','mangaluru','Delhi','Mumbai']",
+      "body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus quis illum amet quia nihil iure facilis facere odit sapiente dicta reiciendis quibusdam aliquid sed nam corporis quae necessitatibus, ratione vitae ex in? Labore quod accusamus dolore aspernatur reprehenderit nihil ipsa, mollitia, ad consequatur hic quo adipisci nobis libero voluptas explicabo vitae dolor, rem similique impedit cumque. Sit quasi quisquam et pariatur enim ullam itaque. Eveniet quaerat fugiat magni architecto qui expedita ad corrupti totam nemo similique vitae, praesentium laudantium enim voluptatem, quasi, a tenetur in! Quod sed aliquid dicta fugit, reiciendis sapiente quibusdam nihil atque voluptatibus enim obcaecati, molestiae exercitationem."
+    },
+    {
+      "id": 4,
+      "title": "AC service Repair",
+      "vendor":"kushal 3",
+      "price" :"500rs",
+      "locations" :"['bangaluru','mangaluru','Delhi','Mumbai']",
+      "body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus quis illum amet quia nihil iure facilis facere odit sapiente dicta reiciendis quibusdam aliquid sed nam corporis quae necessitatibus, ratione vitae ex in? Labore quod accusamus dolore aspernatur reprehenderit nihil ipsa, mollitia, ad consequatur hic quo adipisci nobis libero voluptas explicabo vitae dolor, rem similique impedit cumque. Sit quasi quisquam et pariatur enim ullam itaque. Eveniet quaerat fugiat magni architecto qui expedita ad corrupti totam nemo similique vitae, praesentium laudantium enim voluptatem, quasi, a tenetur in! Quod sed aliquid dicta fugit, reiciendis sapiente quibusdam nihil atque voluptatibus enim obcaecati, molestiae exercitationem."
+    },
+    {
+      "id": 5,
+      "title": "Electricians",
+      "vendor":"kushal 1",
+      "price" :"300rs",
+      "locations" :"['bangaluru','mangaluru','Delhi','Mumbai']",
+      "body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus quis illum amet quia nihil iure facilis facere odit sapiente dicta reiciendis quibusdam aliquid sed nam corporis quae necessitatibus, ratione vitae ex in? Labore quod accusamus dolore aspernatur reprehenderit nihil ipsa, mollitia, ad consequatur hic quo adipisci nobis libero voluptas explicabo vitae dolor, rem similique impedit cumque. Sit quasi quisquam et pariatur enim ullam itaque. Eveniet quaerat fugiat magni architecto qui expedita ad corrupti totam nemo similique vitae, praesentium laudantium enim voluptatem, quasi, a tenetur in! Quod sed aliquid dicta fugit, reiciendis sapiente quibusdam nihil atque voluptatibus enim obcaecati, molestiae exercitationem."
+    },
+    {
+      "id": 6,
+      "title": "plumbers",
+      "vendor":"kushal 1",
+      "price" :"500rs",
+      "locations" :"['bangaluru','mangaluru','Delhi','Mumbai']",
+      "body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus quis illum amet quia nihil iure facilis facere odit sapiente dicta reiciendis quibusdam aliquid sed nam corporis quae necessitatibus, ratione vitae ex in? Labore quod accusamus dolore aspernatur reprehenderit nihil ipsa, mollitia, ad consequatur hic quo adipisci nobis libero voluptas explicabo vitae dolor, rem similique impedit cumque. Sit quasi quisquam et pariatur enim ullam itaque. Eveniet quaerat fugiat magni architecto qui expedita ad corrupti totam nemo similique vitae, praesentium laudantium enim voluptatem, quasi, a tenetur in! Quod sed aliquid dicta fugit, reiciendis sapiente quibusdam nihil atque voluptatibus enim obcaecati, molestiae exercitationem."
+    },
+    {
+      "id": 7,
+      "title": "Pest control",
+      "vendor":"kushal 4",
+      "price" :"200rs",
+      "locations" :"['bangaluru','mangaluru','Delhi','Mumbai']",
+      "body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus quis illum amet quia nihil iure facilis facere odit sapiente dicta reiciendis quibusdam aliquid sed nam corporis quae necessitatibus, ratione vitae ex in? Labore quod accusamus dolore aspernatur reprehenderit nihil ipsa, mollitia, ad consequatur hic quo adipisci nobis libero voluptas explicabo vitae dolor, rem similique impedit cumque. Sit quasi quisquam et pariatur enim ullam itaque. Eveniet quaerat fugiat magni architecto qui expedita ad corrupti totam nemo similique vitae, praesentium laudantium enim voluptatem, quasi, a tenetur in! Quod sed aliquid dicta fugit, reiciendis sapiente quibusdam nihil atque voluptatibus enim obcaecati, molestiae exercitationem."
+    },
+    {
+      "id": 8,
+      "title": "painters",
+      "vendor":"kushal 1",
+      "price" :"1000rs",
+      "locations" :"['bangaluru','mangaluru','Delhi','Mumbai']",
+      "body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus quis illum amet quia nihil iure facilis facere odit sapiente dicta reiciendis quibusdam aliquid sed nam corporis quae necessitatibus, ratione vitae ex in? Labore quod accusamus dolore aspernatur reprehenderit nihil ipsa, mollitia, ad consequatur hic quo adipisci nobis libero voluptas explicabo vitae dolor, rem similique impedit cumque. Sit quasi quisquam et pariatur enim ullam itaque. Eveniet quaerat fugiat magni architecto qui expedita ad corrupti totam nemo similique vitae, praesentium laudantium enim voluptatem, quasi, a tenetur in! Quod sed aliquid dicta fugit, reiciendis sapiente quibusdam nihil atque voluptatibus enim obcaecati, molestiae exercitationem."
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+
+}
