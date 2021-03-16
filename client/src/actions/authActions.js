@@ -43,3 +43,15 @@ export const signin = (formData, router) => async (dispatch) => {
     toast.error(error.response.data)
   }
 };
+
+// update user in local storage
+export const updateUserInLocalStorage = (result, next) => {
+
+  if (window.localStorage.getItem("profile")) {
+    let auth = JSON.parse(localStorage.getItem("profile"));
+    auth.result = result;
+    localStorage.setItem("profile", JSON.stringify(auth));
+    next();
+  }
+
+};

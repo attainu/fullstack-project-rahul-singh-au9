@@ -11,6 +11,7 @@ import Dashboard from './components/User/Dashboard';
 import Profile from './components/User/Profile/Profile';
 import UserDashboard from './components/User/Dashboard/UserDashboard';
 import SellerDashboard from './components/User/Dashboard/SellerDashboard';
+import StripeCallback from './components/User/Stripe/StripeCallback';
 
 const App = () => {
     return (
@@ -25,6 +26,8 @@ const App = () => {
                     <ProtectedRoute exact path='/profile' component={Profile}/>
                     <ProtectedRoute exact path='/userDashboard' component={UserDashboard}/>
                     <ProtectedRoute exact path='/sellerDashboard' component={SellerDashboard}/>
+                    <ProtectedRoute exact path='/stripe/callback' component={StripeCallback}/>
+
                 </Switch>
             </Container>
         </BrowserRouter>

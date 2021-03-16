@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import { useSelector , useDispatch} from 'react-redux';
 // import useStyles from "./styles";
 import { Grow, Container, Grid, Button, Typography } from "@material-ui/core";
@@ -65,7 +65,7 @@ const SellerDashboard = () => {
                     style={{marginLeft: '42%', marginTop: '15px'}}
                     onClick={handleClick}
                     >
-                    {loading? "Processing..." : "Set Up Payouts"}    
+                    {loading? "Click again..." : "Set Up Payouts"}
                     </Button>
 
                     <Typography style={{marginLeft: '30%', marginTop: '5px'}}>

@@ -45,13 +45,6 @@ const Dashboard = () => {
               </Grid>
               <br/> <br/>
               <DashboardNav/>
-              {/* <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-                  <Grid item xs={12} sm={7} className={classes.flx}>
-                    <Card> <Link to='userDashboard'>Your Bookings</Link> </Card>
-                    <Card> <Link to='sellerDashboard'>Your Services</Link> </Card>
-                  </Grid>
-              </Grid> */}
-
           </Container>
       </Grow>
     </>
