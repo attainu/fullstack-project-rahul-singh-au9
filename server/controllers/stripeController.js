@@ -57,4 +57,22 @@ const createStripeAccount = async (req,res) => {
     }
 }
 
-module.exports = createStripeAccount
+const getAccountStatus = async (req, res) => {
+    try {
+        //1. find user from DB
+        const User = await userModel.findById(req.user.id).exec();
+        const account = await stripe.accounts.retrieve(User.stripe_account_id)
+        // console.log("ACCOUNT ==========>",account)
+
+        const updatedUser = await userModel.findByIdAndUpdate(User._id,{ stripe_seller: account},{new: true})
+        .select("-password").exec();
+        // console.log("UPDATED USER ===>", updatedUser)
+
+        res.json(updatedUser)
+
+    } catch(error){
+      console.log(error)
+    }
+}
+
+module.exports = {createStripeAccount, getAccountStatus}

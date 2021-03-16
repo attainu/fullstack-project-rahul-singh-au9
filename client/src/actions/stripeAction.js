@@ -2,41 +2,64 @@ import {CREATE_STRIPE_ACCOUNT} from '../constants/actionTypes';
 import * as api from "../api/index.js";
 import { toast } from 'react-toastify';
 
-// CREATE_STRIPE_ACCOUNT ACTION
-export const createStripeAccount = (router) => async (dispatch) => {
+// // CREATE_STRIPE_ACCOUNT ACTION
+// export const createStripeAccount = (router) => async (dispatch) => {
 
-  try{
+//   try{
 
-    const {data} = await api.createStripeAccount()
+//     const {data} = await api.createStripeAccount()
 
-    dispatch({
-      type: CREATE_STRIPE_ACCOUNT,
-      payload: data
-    })
+//     dispatch({
+//       type: CREATE_STRIPE_ACCOUNT,
+//       payload: data
+//     })
 
-    // router.push("/")
-  } catch(error){
-    console.log(error);
-    toast.error("Stripe Connect failed! Try later...")
-  }
-};
+//     // router.push("/")
+//   } catch(error){
+//     console.log(error);
+//     toast.error("Stripe Connect failed! Try later...")
+//   }
+// };
 
 
-export const getAccountStatus = (router) => async (dispatch) => {
+// export const getAccountStatus = (router) => async (dispatch) => {
 
-  try{
+//   try{
 
-    const {data} = await api.getAccountStatus()
+//     const {data} = await api.getAccountStatus()
 
-    dispatch({
-      type: CREATE_STRIPE_ACCOUNT,
-      data
-    })
+//     dispatch({
+//       type: CREATE_STRIPE_ACCOUNT,
+//       data
+//     })
 
-    // router.push("/")
-  } catch(error){
-    console.log(error);
-    toast.error("Stripe Connect failed! Try later...")
-  }
-};
+//     // router.push("/")
+//   } catch(error){
+//     console.log(error);
+//     toast.error("Stripe Connect failed! Try later...")
+//   }
+// };
 
+import axios from "axios";
+
+export const createStripeAccount = async (token) =>
+  await axios.post(
+    `${process.env.REACT_APP_API}/createStripeAccount`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+export const getAccountStatus = async (token) =>
+  axios.post(
+    `${process.env.REACT_APP_API}/get-account-status`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );

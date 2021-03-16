@@ -4,6 +4,7 @@ import { useSelector , useDispatch} from 'react-redux';
 import { Grow, Container, Grid, Button, Typography } from "@material-ui/core";
 import HomeIcon from '@material-ui/icons/Home';
 import {createStripeAccount} from '../../../actions/stripeAction';
+import { toast } from 'react-toastify';
 
 
 const SellerDashboard = () => {
@@ -13,15 +14,29 @@ const SellerDashboard = () => {
     const {stripe} = useSelector((state) =>({...state}));
     const dispatch = useDispatch();
 
-    const handleClick = () => {
-        // stripe setUp action
-        setLoading(true)
-        dispatch(createStripeAccount())
+    // const handleClick = () => {
+    //     // stripe setUp action
+    //     setLoading(true)
+    //     dispatch(createStripeAccount())
 
-        if(stripe !== null){
-            window.location.href = stripe
+    //     if(stripe !== null){
+    //         window.location.href = stripe
+    //     }
+    // }
+
+    const handleClick = async () => {
+        setLoading(true);
+        try {
+        let res = await createStripeAccount(auth.token);
+        console.log(res); // get login link
+        window.location.href = res.data;
+        
+        } catch (err) {
+        console.log(err);
+        toast.error("Stripe connect failed, Try again.");
+        setLoading(false);
         }
-    }
+    };
 
     const connected = () =>{
         return(
