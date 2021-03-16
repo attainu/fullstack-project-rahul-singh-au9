@@ -10,12 +10,17 @@ const SellerDashboard = () => {
   // const classes = useStyles();
     const [loading, setLoading] = useState(false);
     const {auth} = useSelector((state) =>({...state}));
+    const {stripe} = useSelector((state) =>({...state}));
     const dispatch = useDispatch();
 
     const handleClick = () => {
         // stripe setUp action
         setLoading(true)
         dispatch(createStripeAccount())
+
+        if(stripe !== null){
+            window.location.href = stripe
+        }
     }
 
     const connected = () =>{

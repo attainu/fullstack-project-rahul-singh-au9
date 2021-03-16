@@ -11,12 +11,10 @@ export const createStripeAccount = (router) => async (dispatch) => {
 
     dispatch({
       type: CREATE_STRIPE_ACCOUNT,
-      data
+      payload: data
     })
 
     // router.push("/")
-
-
   } catch(error){
     console.log(error);
     toast.error("Stripe Connect failed! Try later...")
