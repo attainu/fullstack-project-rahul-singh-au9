@@ -20,6 +20,7 @@ const createStripeAccount = async (req,res) => {
       if (!User.stripe_account_id) {
 
         const account = await stripe.accounts.create({
+          country: 'US',
           type: "express",
         })
         console.log("ACCOUNT ===>", account)
@@ -28,26 +29,26 @@ const createStripeAccount = async (req,res) => {
       };
 
       // 3. create login link based on account id (for frontend to complete onboarding)
-      console.log(User?.stripe_account_id)
-      let accountLink = await stripe.accountLinks.create({
-        account: `${User.stripe_account_id}`,
-        refresh_url: "http://localhost:3000/stripe/callback",
-        return_url: "http://localhost:3000/stripe/callback",
-        type: "account_onboarding",
-      });
+        let accountLink = await stripe.accountLinks.create({
+          account: User.stripe_account_id,
+          refresh_url: process.env.STRIPE_REDIRECT_URL,
+          return_url: process.env.STRIPE_REDIRECT_URL,
+          type: "account_onboarding",
+        });
 
-      console.log(accountLink)
+        // console.log(accountLink)
+
 
       // prefill any info such as email
-      accountLink = Object.assign(accountLink, {
-        "stripe_user[email]": User.email || undefined,
-      });
+        accountLink = Object.assign(accountLink, {
+          "stripe_user[email]": User.email || undefined,
+        });
 
       // console.log("ACCOUNT LINK", accountLink);
 
-      let link = `${accountLink.url}?${queryString.stringify(accountLink)}`;
-      console.log("LOGIN LINK", link);
-      res.send(link);
+        let link = `${accountLink.url}?${queryString.stringify(accountLink)}`;
+        console.log("LOGIN LINK", link);
+        res.send(link);
 
       // 4. update payment schedule (optional. default is 2 days
 
