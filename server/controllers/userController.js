@@ -43,9 +43,9 @@ const signup = async (req, res) => {
         city: result.city,
         createdAt: result.createdAt,
         updatedAt: result.updatedAt,
-        stripe_account_id: oldUser.stripe_account_id,
-        stripe_seller: oldUser.stripe_seller,
-        stripeSession: oldUser.stripeSession
+        // stripe_account_id: oldUser.stripe_account_id,
+        // stripe_seller: oldUser.stripe_seller,
+        // stripeSession: oldUser.stripeSession
     }, token});
 
   }catch(err){
