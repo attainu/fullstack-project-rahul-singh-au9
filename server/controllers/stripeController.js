@@ -23,7 +23,7 @@ const createStripeAccount = async (req,res) => {
           country: 'US',
           type: "express",
         })
-        console.log("ACCOUNT ===>", account)
+        // console.log("ACCOUNT ===>", account)
         User.stripe_account_id = account.id
         User.save();
       };
@@ -47,7 +47,7 @@ const createStripeAccount = async (req,res) => {
       // console.log("ACCOUNT LINK", accountLink);
 
         let link = `${accountLink.url}?${queryString.stringify(accountLink)}`;
-        console.log("LOGIN LINK", link);
+        // console.log("LOGIN LINK", link);
         res.send(link);
 
       // 4. update payment schedule (optional. default is 2 days
@@ -75,4 +75,20 @@ const getAccountStatus = async (req, res) => {
     }
 }
 
-module.exports = {createStripeAccount, getAccountStatus}
+
+const getAccountBalance = async (req, res) => {
+    //1. find user from DB
+    const User = await userModel.findById(req.user.id).exec();
+
+    try {
+      const balance = await stripe.balance.retrieve({
+        stripeAccount: User.stripe_account_id
+      });
+      // console.log("BALANCE ===>", balance)
+      res.json(balance)
+    } catch(error){
+      console.log(error);
+    }
+}
+
+module.exports = {createStripeAccount, getAccountStatus, getAccountBalance}

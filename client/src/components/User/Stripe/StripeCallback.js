@@ -25,7 +25,7 @@ const StripeCallback = () => {
             payload: res.data,
           });
           // redirect user to dashboard
-          window.location.href = "/dashboard/seller";
+          window.location.href = "/sellerDashboard";
         });
       } catch (err) {
         console.log(err);
