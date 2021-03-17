@@ -11,8 +11,8 @@ const SellerDashboard = () => {
   // const classes = useStyles();
     const [loading, setLoading] = useState(false);
     const {auth} = useSelector((state) =>({...state}));
-    const {stripe} = useSelector((state) =>({...state}));
-    const dispatch = useDispatch();
+    // const {stripe} = useSelector((state) =>({...state}));
+    // const dispatch = useDispatch();
 
     // const handleClick = () => {
     //     // stripe setUp action
@@ -30,7 +30,7 @@ const SellerDashboard = () => {
         let res = await createStripeAccount(auth.token);
         console.log(res); // get login link
         window.location.href = res.data;
-        
+
         } catch (err) {
         console.log(err);
         toast.error("Stripe connect failed, Try again.");
@@ -97,7 +97,7 @@ const SellerDashboard = () => {
     return (
         <>
         {
-            auth && auth?.result && auth.result.stripe_seller && auth.result.stripe_seller.charges_enabled ? connected() : notConnected()
+            auth && auth?.result && auth.result.stripe_seller ? connected() : notConnected()
         }
 
         {/* {
@@ -108,5 +108,5 @@ const SellerDashboard = () => {
         </>
     )
 }
-
+// auth.result.stripe_seller.charges_enabled &&
 export default SellerDashboard;
