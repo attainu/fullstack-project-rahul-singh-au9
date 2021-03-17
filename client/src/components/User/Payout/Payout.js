@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
-import {Card, CardActions, CardContent, Button, Typography} from '@material-ui/core';
+import {Card, CardContent, Typography, CardActions, Button} from '@material-ui/core';
+import { deepPurple } from '@material-ui/core/colors';
+import SettingsIcon from '@material-ui/icons/Settings';
+import { payoutSetting } from '../../../actions/stripeAction';
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles({
   root: {
@@ -22,30 +27,45 @@ const useStyles = makeStyles({
 });
 
 const Payout = () => {
+
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
+  const {auth} = useSelector((state) =>({...state}));
+  const handlePayoutSettings = async () => {
+
+    setLoading(true)
+    try {
+      const res = await payoutSetting(auth.token)
+      console.log("PAYOUT SETTINGS ====>",res);
+      // window.location.href = res.data
+      setLoading(false)
+
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+      toast.error("Unable to access settings. Try again")
+    }
+  }
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          Payout Settings
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+      <Card className={classes.root}>
+          <CardContent>
+
+              <SettingsIcon style={{ fontSize: 40, color: deepPurple[500], marginLeft: '107px' }}/>
+
+              <Typography variant="h5" component="h2" style={{ marginLeft: '46px' }}>
+                  Payout Settings
+              </Typography>
+              <br/>
+
+              <CardActions>
+                <Button size="small" variant="outlined"
+                style={{ fontSize: 20, color: deepPurple[500], marginLeft: '40px' }}
+                onClick={handlePayoutSettings}
+                >SetUp Payouts</Button>
+              </CardActions>
+          </CardContent>
+      </Card>
   );
 }
 
