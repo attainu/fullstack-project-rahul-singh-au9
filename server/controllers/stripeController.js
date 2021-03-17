@@ -91,4 +91,21 @@ const getAccountBalance = async (req, res) => {
     }
 }
 
-module.exports = {createStripeAccount, getAccountStatus, getAccountBalance}
+
+export const payoutSetting = async (req, res) => {
+    //1. find user from DB
+    const User = await userModel.findById(req.user.id).exec();
+
+    try {
+      const loginLink = await stripe.accounts.createLoginLink(User.stripe_account_id,{
+          redirect_url: process.env.STRIPE_SETTING_REDIRECT_URL
+      })
+      // console.log("LOG-IN LINK PAYOUT SETTINGS ====>", loginLink)
+      res.json(loginLink)
+    } catch (error) {
+      console.log("PAYOUT SETTINGS ERROR ====>",error)
+
+    }
+}
+
+module.exports = {createStripeAccount, getAccountStatus, getAccountBalance, payoutSetting}

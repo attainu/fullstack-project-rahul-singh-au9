@@ -31,13 +31,14 @@ const Payout = () => {
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const {auth} = useSelector((state) =>({...state}));
+
   const handlePayoutSettings = async () => {
 
     setLoading(true)
     try {
       const res = await payoutSetting(auth.token)
-      console.log("PAYOUT SETTINGS ====>",res);
-      // window.location.href = res.data
+      // console.log("PAYOUT SETTINGS ====>",res);
+      window.location.href = res.data.url
       setLoading(false)
 
     } catch (error) {
@@ -54,7 +55,7 @@ const Payout = () => {
               <SettingsIcon style={{ fontSize: 40, color: deepPurple[500], marginLeft: '107px' }}/>
 
               <Typography variant="h5" component="h2" style={{ marginLeft: '46px' }}>
-                  Payout Settings
+                  {loading? 'loading...' : 'Payout Settings'}
               </Typography>
               <br/>
 
