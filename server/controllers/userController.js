@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const SECRET = "this is the super secret for hashing the user password";
 
+// USER SIGN-UP
 const signup = async (req, res) => {
 
   const {firstName, lastName, city, phone, email, password } = req.body;
@@ -57,6 +58,7 @@ const signup = async (req, res) => {
 };
 
 
+// USER LOG-IN
 const signin = async (req, res) => {
 
   const {email, password } = req.body;

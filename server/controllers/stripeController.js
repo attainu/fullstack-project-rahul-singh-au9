@@ -6,7 +6,7 @@ const stripe = Stripe(process.env.STRIPE_SECRET);
 const queryString = require("query-string");
 
 
-
+// CREATING STRIPE ACCOUNT
 const createStripeAccount = async (req,res) => {
     // console.log("request user from auth middleware", req.user);
     // console.log("you hit createStripeAccount endpoint");
@@ -57,6 +57,8 @@ const createStripeAccount = async (req,res) => {
     }
 }
 
+
+// STRIPE ACCOUNT STATUS
 const getAccountStatus = async (req, res) => {
     try {
         //1. find user from DB
@@ -76,6 +78,7 @@ const getAccountStatus = async (req, res) => {
 }
 
 
+// STRIPE ACCOUNT BALANCE
 const getAccountBalance = async (req, res) => {
     //1. find user from DB
     const User = await userModel.findById(req.user.id).exec();
@@ -92,6 +95,7 @@ const getAccountBalance = async (req, res) => {
 }
 
 
+// STRIPE ACCOUNT PAYOUT SETTINGS
 export const payoutSetting = async (req, res) => {
     //1. find user from DB
     const User = await userModel.findById(req.user.id).exec();
