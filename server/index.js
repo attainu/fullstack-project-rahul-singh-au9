@@ -9,14 +9,18 @@ dotenv.config();
 // Init app
 const app = express();
 
-app.use(bodyParser.json({limit: "30mb", extended: true}));
-app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
+app.use(express.json());
 app.use(cors());
 
+
+const ProductRoutes = require('./routes/ProductRoutes')
 // HOMEPAGE
 app.get("/", (req, res)=>{
   res.send("HOME")
 })
+
+
+app.use('/api',ProductRoutes)
 
 // ROUTES THAT NOT BEEN DEFINED
 app.get("*", (req, res) => {
