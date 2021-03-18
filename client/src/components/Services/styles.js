@@ -25,4 +25,11 @@ export default makeStyles((theme) => ({
   buttonSubmit: {
     marginBottom: 10,
   },
+
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+
 }));

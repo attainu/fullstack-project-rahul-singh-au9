@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
+// import { DatePicker } from '@material-ui/pickers'
 import { useDispatch, useSelector } from "react-redux";
 import FileBase from "react-file-base64";
 import {toast} from 'react-toastify';
 import AlgoliaPlaces from 'algolia-places-react';
+// import { DatePicker } from "antd";
+// import moment from "moment";
 import useStyles from "./styles";
 
 const config = {
     appId: process.env.REACT_APP_ALGOLIA_APP_ID,
     apiKey: process.env.REACT_APP_ALGOLIA_API_KEY,
     language: 'en',
-    countries: ['au']
+    countries: ['in']
 }
 
 const NewService = () => {
@@ -20,7 +23,6 @@ const NewService = () => {
     const [values, setValues] = useState({
         title: '',
         content: '',
-        location: '',
         image: '',
         price: '',
         from: '',
@@ -29,8 +31,10 @@ const NewService = () => {
         total: ''
     });
 
+    const [location, setLocation] = useState("");
+
     // destructing values from state
-    const {title, content, location, image, price, from, to, option, total} = values;
+    const {title, content, image, price, from, to, option, total} = values;
 
     const clear = () => {
         setValues({ title: "", content: "", location: "", image: "", price: "", from: "", to: "", options: ""  });
@@ -38,9 +42,12 @@ const NewService = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        console.log(values)
+        console.log(location)
         clear();
     };
+
+    const minDate = new Date(Date.now());
 
     return (
 
@@ -75,8 +82,16 @@ const NewService = () => {
                 onChange={(e) => setValues({ ...values, content: e.target.value })}
                 />
 
-                <AlgoliaPlaces defaultValue={location} placeholder='Location' options={config}
-                onChange = {({suggestion}) => setValues({...values, location: suggestion.value})}/>
+                <AlgoliaPlaces
+
+                name='location'
+                value={location}
+                placeholder='Location'
+                options={config}
+                // onChange = {({suggestion}) => setValues({...values, location: suggestion.value})}
+                onChange={({ suggestion }) => setLocation(suggestion.value)}
+                style={{ height:"60px" ,width:"1183px", marginTop:"8px" }}
+                />
 
                 <TextField
                 name="price"
@@ -96,6 +111,32 @@ const NewService = () => {
                 fullWidth
                 value={total}
                 onChange={(e) => setValues({ ...values, total: e.target.value })}
+                />
+
+                <TextField
+                label="From"
+                name="from"
+                type="date"
+                defaultValue={minDate}
+                value={from}
+                onChange={(e) => setValues({ ...values, from: e.target.value })}
+                className={classes.textField}
+                InputLabelProps={{
+                shrink: true,
+                }}
+                />
+
+                <TextField
+                label="To"
+                name="to"
+                type="date"
+                value={to}
+                onChange={(e) => setValues({ ...values, to: e.target.value })}
+                defaultValue={minDate}
+                className={classes.textField}
+                InputLabelProps={{
+                shrink: true,
+                }}
                 />
 
                 <div className={classes.fileInput}>
@@ -127,6 +168,8 @@ const NewService = () => {
                 Clear
                 </Button>
             </form>
+            <pre>{JSON.stringify(values, null, 4)}</pre>
+                {JSON.stringify(location)}
         </Paper>
     );
 };
