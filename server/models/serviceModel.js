@@ -50,7 +50,13 @@ const serviceSchema = mongoose.Schema({
 
   total: {
     type: Number
+  },
+
+  createdAt: {
+    type: Date,
+    default: new Date()
   }
+
 }, {timestamps: true});
 
 // MODEL

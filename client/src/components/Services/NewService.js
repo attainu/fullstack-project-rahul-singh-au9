@@ -42,8 +42,8 @@ const NewService = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let res = await createService(auth.token, {...values, location});
-        console.log("NEW SERVICE ====>", res)
+        let res = await createService(auth.token, {...values, location, postedBy: auth.result.name});
+        // console.log("NEW SERVICE ====>", res)
         toast.success("Your New Service is Posted Successfully...")
         clear();
     };
