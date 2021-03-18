@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { TextField, Button, Typography, Paper } from "@material-ui/core";
+import React, { useState, useEffect } from 'react';
+import { TextField, Button, Typography, Paper } from '@material-ui/core';
 // import { DatePicker } from '@material-ui/pickers'
-import { useDispatch, useSelector } from "react-redux";
-import FileBase from "react-file-base64";
+import { useDispatch, useSelector } from 'react-redux';
+import FileBase from 'react-file-base64';
 import {toast} from 'react-toastify';
 import AlgoliaPlaces from 'algolia-places-react';
-// import { DatePicker } from "antd";
-// import moment from "moment";
-import useStyles from "./styles";
+// import moment from 'moment';
+import useStyles from './styles';
+import {createService} from '../../actions/serviceActions';
 
 const config = {
     appId: process.env.REACT_APP_ALGOLIA_APP_ID,
@@ -19,7 +19,7 @@ const config = {
 const NewService = () => {
 
     const classes = useStyles();
-
+    const {auth} = useSelector((state) => ({...state}));
     const [values, setValues] = useState({
         title: '',
         content: '',
@@ -42,8 +42,9 @@ const NewService = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(values)
-        console.log(location)
+        let res = await createService(auth.token, {...values, location});
+        console.log("NEW SERVICE ====>", res)
+        toast.success("Your New Service is Posted Successfully...")
         clear();
     };
 
@@ -168,8 +169,8 @@ const NewService = () => {
                 Clear
                 </Button>
             </form>
-            <pre>{JSON.stringify(values, null, 4)}</pre>
-                {JSON.stringify(location)}
+            {/* <pre>{JSON.stringify(values, null, 4)}</pre>
+                {JSON.stringify(location)} */}
         </Paper>
     );
 };

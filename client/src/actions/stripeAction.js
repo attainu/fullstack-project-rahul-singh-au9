@@ -42,6 +42,7 @@ import { toast } from 'react-toastify';
 
 import axios from "axios";
 
+  // CREATE_STRIPE_ACCOUNT ACTION
 export const createStripeAccount = async (token) =>
   await axios.post(
     `${process.env.REACT_APP_API}/createStripeAccount`,
