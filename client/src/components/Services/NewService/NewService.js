@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {toast} from 'react-toastify';
-import {createService} from '../../actions/serviceActions';
+import {createService} from '../../../actions/serviceActions';
 import NewServiceForm from './NewServiceForm';
 
 

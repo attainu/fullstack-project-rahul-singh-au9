@@ -36,8 +36,7 @@ const serviceSchema = mongoose.Schema({
   },
 
   image: {
-    type: Buffer,
-    contentType: String
+    type: String,
   },
 
   from: {

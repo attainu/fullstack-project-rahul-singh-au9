@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
       backgroundImage: `url(${"https://i.ibb.co/2j7k3fr/urbanservices.jpg"})`,
       backgroundSize: 'cover',
       minHeight: '380px',
-      
+
     },
 
     heroButtons: {

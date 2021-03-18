@@ -12,7 +12,7 @@ import Profile from './components/User/Profile/Profile';
 import UserDashboard from './components/User/Dashboard/UserDashboard';
 import SellerDashboard from './components/User/Dashboard/SellerDashboard';
 import StripeCallback from './components/User/Stripe/StripeCallback';
-import NewService from './components/Services/NewService'
+import NewService from './components/Services/NewService/NewService';
 
 const App = () => {
     return (

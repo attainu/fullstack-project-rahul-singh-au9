@@ -4,6 +4,7 @@ import SearchBar from 'material-ui-search-bar';
 import Cards from './Card/Card'
 import Footer from './Footer'
 import useStyles from './styles';
+import ServiceHome from '../Services/ServicesHome/Home'
 
 const Home = () => {
     const classes = useStyles();
@@ -11,14 +12,8 @@ const Home = () => {
     return (
         <React.Fragment>
           <CssBaseline />
-          {/* <AppBar position="relative">
-            <Toolbar>
-              <CameraIcon className={classes.icon} />
-              <Typography variant="h6" color="inherit" noWrap>
-                Urban Services
-              </Typography>
-            </Toolbar>
-          </AppBar> */}
+
+          <ServiceHome/>
 
           <main>
             <div className={classes.heroContent}>

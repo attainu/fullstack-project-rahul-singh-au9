@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useSelector , useDispatch} from 'react-redux';
-// import useStyles from "./styles";
-import { Grow, Container, Grid, Button, Typography } from "@material-ui/core";
+import { useSelector } from 'react-redux';
+import {Link} from 'react-router-dom';
+import { Grow, Container, Grid, Button, Typography } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import {createStripeAccount} from '../../../actions/stripeAction';
 import { toast } from 'react-toastify';
@@ -49,9 +49,11 @@ const SellerDashboard = () => {
                 </Grid>
 
                 <Grid item xs={12} sm={4}>
-                    <Button variant="contained"  color="primary" >
-                        + Add Service
-                    </Button>
+                    <Link to='/services/new'>
+                        <Button variant="contained"  color="primary" >
+                                + Add Service
+                        </Button>
+                    </Link>
                 </Grid>
 
             </Grid>
