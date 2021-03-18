@@ -97,6 +97,11 @@ export default function Navbar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem  onClick={handleClose}>
+
+                  <Link to='/products' >Products</Link>
+               
+                  </MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
