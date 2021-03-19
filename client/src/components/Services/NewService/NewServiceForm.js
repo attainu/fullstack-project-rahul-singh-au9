@@ -1,4 +1,4 @@
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import { TextField, Button, Typography, Paper, FormControl, Select, InputLabel } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import AlgoliaPlaces from 'algolia-places-react';
 import useStyles from './styles';
@@ -53,8 +53,30 @@ const NewServiceForm = (props) => {
                 onChange={(e) => setValues({ ...values, content: e.target.value })}
                 />
 
-                <AlgoliaPlaces
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="service">Service Type</InputLabel>
+                    <Select
+                    name="option"
+                    native
+                    value={option}
+                    onChange={(e) => setValues({ ...values, option: e.target.value })}
+                    >
+                    <option aria-label="None" value="" />
+                    <option value={"Salon For Women"}>Salon For Women</option>
+                    <option value={"Message for Women"}>Message for Women</option>
+                    <option value={"Salon For Men"}>Salon For Men</option>
+                    <option value={"Message for Men"}>Message for Men</option>
+                    <option value={"Ac Service and Repair"}>Ac Service and Repair</option>
+                    <option value={"Painters"}>Painters</option>
+                    <option value={"Cleaning and disinfection"}>Cleaning and disinfection</option>
+                    <option value={"Electricians"}>Electricians</option>
+                    <option value={"Plumbers"}>Plumbers</option>
+                    <option value={"Carpenters"}>Carpenters</option>
+                    <option value={"Pest Control"}>Pest Control</option>
+                    </Select>
+                </FormControl>
 
+                <AlgoliaPlaces
                 name='location'
                 value={location}
                 placeholder='Location'

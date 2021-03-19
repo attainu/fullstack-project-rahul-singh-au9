@@ -35,8 +35,14 @@ const serviceSchema = mongoose.Schema({
     ref: "User"
   },
 
+  createdBy: {
+    type: String,
+  },
+
   image: {
     type: String,
+    contentType: String,
+    data: Buffer,
   },
 
   from: {

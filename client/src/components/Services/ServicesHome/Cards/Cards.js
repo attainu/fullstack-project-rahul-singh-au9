@@ -9,7 +9,7 @@ const Cards = ({services}) => {
 
     return (
         !services.length ? <CircularProgress /> : (
-            <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+            <Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}>
                 {services.map((service) => (
 
                     <Grid key={service._id} item xs={12} sm={6} md={6}>

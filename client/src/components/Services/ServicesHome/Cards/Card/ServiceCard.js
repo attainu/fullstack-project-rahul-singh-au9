@@ -1,17 +1,19 @@
 import React from 'react';
+import { useHistory, Link } from 'react-router-dom'
 import {Card, Button, CardContent, CardMedia, Typography} from '@material-ui/core';
 import {currencyFormatter} from '../../../../../actions/stripeAction';
-import {diffDays} from '../../../../../actions/serviceActions';
+// import {diffDays} from '../../../../../actions/serviceActions';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import useStyles from './styles';
 
-export default function ServiceCard2({service}) {
+const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, showViewMoreButton=true}) => {
+
   const classes = useStyles();
+  const history = useHistory();
 
     return (
         <Card className={classes.root}>
-
             <CardMedia
               className={classes.cover}
               image={service.image || "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"}
@@ -21,7 +23,7 @@ export default function ServiceCard2({service}) {
             <div className={classes.details} style={{marginLeft: "20px"}}>
 
                 <CardContent className={classes.content}>
-                    <Typography component="h5" variant="h5">
+                    <Typography component="h5" variant="h5" color="primary">
                         {service.title}  {
                           currencyFormatter({
                             amount: service.price,
@@ -34,35 +36,55 @@ export default function ServiceCard2({service}) {
                         {service.location}
                     </Typography>
 
-                    <Typography component="h5" variant="h5">
+                    <Typography component="p" variant="p" style={{fontSize: '15px', fontWeight: "bold"}}>
                         {`${service.content.substring(0,200)}...`}
                     </Typography>
 
-                    <Typography component="h5" variant="h5">
+                    {/* <Typography component="h5" variant="h5">
                         Availabe for {diffDays(service.from, service.to)} {''}
                         {diffDays(service.from, service.to) <= 1 ? 'day': 'days'}
+                    </Typography> */}
+
+                    <Typography component="h6" variant="h6">
+                        Available bookings - { service.total}
                     </Typography>
 
-                    <Typography component="h5" variant="h5">
-                        Available bookings { service.total}
-                    </Typography>
-
-                    <Typography component="h5" variant="h5">
-                        Available from {new Date(service.from).toLocaleDateString()}
+                    <Typography component="h6" variant="h6">
+                        Available from - {new Date(service.from).toLocaleDateString()}
                     </Typography>
 
                 </CardContent>
 
               <div className={classes.controls} style={{marginLeft: "8px"}}>
 
-                  <Button color="primary" variant="contained">
-                    Show more
-                  </Button>
+                  {
+                    showViewMoreButton && (
+                      <>
+                        <Button color="primary"
+                        variant="contained"
+                        onClick={() => history.push(`/service/${service._id}`)}
+                        >
+                          Show more
+                        </Button>
+                      </>
+                    )
+                  }
 
-                  <EditIcon color="primary" style={{marginLeft: "550px"}}/>
+                  {
+                    owner && (
+                      <>
+                        <Link to={`/service/edit/${service._id}`}>
+                          <EditIcon color="primary" style={{marginLeft: "500px"}}/>
+                        </Link>
 
-                  <DeleteIcon color="secondary" style={{marginLeft: "80px"}}/>
-
+                        <DeleteIcon
+                        color="secondary"
+                        style={{marginLeft: "60px"}}
+                        onClick={() => handleServiceDelete(service._id)}
+                        />
+                      </>
+                    )
+                  }
               </div>
 
             </div>
@@ -70,3 +92,5 @@ export default function ServiceCard2({service}) {
         </Card>
     );
 }
+
+export default ServiceCard;

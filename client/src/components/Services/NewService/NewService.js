@@ -15,22 +15,21 @@ const NewService = () => {
         price: '',
         from: '',
         to: '',
-        options: '',
+        option: '',
         total: ''
     });
 
     const [location, setLocation] = useState("");
 
-
     const clear = () => {
-        setValues({ title: "", content: "", image: "", price: "", from: "", to: "", options: ""  });
+        setValues({ title: "", content: "", image: "", price: "", from: "", to: "", option: "", total: ""  });
         setLocation("")
     };
 
     const handleSubmit = async (e) => {
         try{
             e.preventDefault()
-            let res = await createService(auth.token, {...values, location, postedBy: auth.result.name});
+            let res = await createService(auth.token, {...values, location, postedBy: auth.result.email});
             // console.log("NEW SERVICE ====>", res)
             toast.success("Your New Service is Posted Successfully...")
             clear();

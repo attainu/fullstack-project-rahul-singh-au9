@@ -22,13 +22,13 @@ const Home = () => {
                 <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
                     <Grid item xs={12} sm={12}>
-                      <Cards services={services}/>
+                        <Cards services={services}/>
                     </Grid>
 
                     {/* <pre>{JSON.stringify(services, null, 4)}</pre> */}
                 </Grid>
             </Container>
-          </Grow>
+        </Grow>
     )
 }
 

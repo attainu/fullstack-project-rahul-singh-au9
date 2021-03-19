@@ -1,28 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { Grow, Container, Grid, Button, Typography } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import {createStripeAccount} from '../../../actions/stripeAction';
+import {sellerServices} from '../../../actions/serviceActions';
 import { toast } from 'react-toastify';
 
 
 const SellerDashboard = () => {
-  // const classes = useStyles();
     const [loading, setLoading] = useState(false);
+    const [services, setServices] = useState([]);
     const {auth} = useSelector((state) =>({...state}));
-    // const {stripe} = useSelector((state) =>({...state}));
-    // const dispatch = useDispatch();
 
-    // const handleClick = () => {
-    //     // stripe setUp action
-    //     setLoading(true)
-    //     dispatch(createStripeAccount())
+    const fetchSellerServices = async () => {
+        let {data} = await sellerServices(auth.token);
+        setServices(data)
+    }
 
-    //     if(stripe !== null){
-    //         window.location.href = stripe
-    //     }
-    // }
+    useEffect(() => {
+        fetchSellerServices()
+    },[])
+
+
 
     const handleClick = async () => {
         setLoading(true);

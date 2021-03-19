@@ -17,6 +17,20 @@ export const createService = async (token, data) =>
 // GET ALL THE SERVICES
 export const allServices = async () => await axios.get(`${process.env.REACT_APP_API}/services`);
 
+
+// SELLER'S SERVICES FOR SELLER'S DASHBOARD
+export const sellerServices = async (token, data) =>
+  await axios.get(
+    `${process.env.REACT_APP_API}/seller-services`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+
 // availabe dates
 export const diffDays = (from, to) => {
 
