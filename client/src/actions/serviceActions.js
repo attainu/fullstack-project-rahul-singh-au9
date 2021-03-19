@@ -30,6 +30,18 @@ export const sellerServices = async (token, data) =>
   );
 
 
+// DELETE THE SERVICE FOR THE SERVICE OWNER
+export const deleteService = async (token, serviceId) =>{
+    await axios.delete(`${process.env.REACT_APP_API}/delete-service/${serviceId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+    )
+}
+
+
 // availabe dates
 export const diffDays = (from, to) => {
 

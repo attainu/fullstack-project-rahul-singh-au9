@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import { Grow, Container, Grid, Button, Typography, CircularProgress } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import {createStripeAccount} from '../../../actions/stripeAction';
-import {sellerServices} from '../../../actions/serviceActions';
+import {sellerServices, deleteService} from '../../../actions/serviceActions';
 import { toast } from 'react-toastify';
 import ServiceCard from '../../Services/ServicesHome/Cards/Card/ServiceCard';
 import useStyles from "./styles";
@@ -25,8 +25,6 @@ const SellerDashboard = () => {
         fetchSellerServices()
     },[])
 
-
-
     const handleClick = async () => {
         setLoading(true);
         try {
@@ -40,6 +38,15 @@ const SellerDashboard = () => {
         setLoading(false);
         }
     };
+
+    const handleServiceDelete = async (service) => {
+        if(!window.confirm("Are You Sure ?")) return;
+
+        deleteService(auth.token, service?._id).then((res) =>{
+            toast.success("Your Service has been successfully deleted...")
+            fetchSellerServices()
+        })
+    }
 
     const connected = () => {
         return(
@@ -69,7 +76,12 @@ const SellerDashboard = () => {
                         {services.map((service) => (
 
                             <Grid key={service._id} item xs={12} sm={6} md={6}>
-                                <ServiceCard service={service} showViewMoreButton={false} owner={true}/>
+                                <ServiceCard
+                                service={service}
+                                showViewMoreButton={false}
+                                owner={true}
+                                handleServiceDelete={handleServiceDelete}
+                                />
                             </Grid>
                         ))}
 
