@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
-import { Grow, Container, Grid, Button, Typography } from '@material-ui/core';
+import { Grow, Container, Grid, Button, Typography, CircularProgress } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import {createStripeAccount} from '../../../actions/stripeAction';
 import {sellerServices} from '../../../actions/serviceActions';
 import { toast } from 'react-toastify';
+import ServiceCard from '../../Services/ServicesHome/Cards/Card/ServiceCard';
+import useStyles from "./styles";
 
 
 const SellerDashboard = () => {
     const [loading, setLoading] = useState(false);
     const [services, setServices] = useState([]);
     const {auth} = useSelector((state) =>({...state}));
+    const classes = useStyles();
 
     const fetchSellerServices = async () => {
         let {data} = await sellerServices(auth.token);
@@ -38,23 +41,41 @@ const SellerDashboard = () => {
         }
     };
 
-    const connected = () =>{
+    const connected = () => {
         return(
         <Grow in>
         <Container>
             <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
-                <Grid item xs={12} sm={7}>
-                    <h1>Your Services</h1>
-                </Grid>
+                <Grid item xs={12} sm={12} style={{display: 'flex'}}>
+                    <h1 style={{marginLeft: '30px'}}>Your Services</h1>
 
-                <Grid item xs={12} sm={4}>
                     <Link to='/services/new'>
-                        <Button variant="contained"  color="primary" >
-                                + Add Service
+                        <Button
+                        variant="contained"
+                        color="primary"
+                        style={{marginTop: '26px', marginLeft: '700px'}}
+                        >
+                        + Add Service
                         </Button>
                     </Link>
+                    {/* <pre>{JSON.stringify(services, null, 4)}</pre> */}
+
                 </Grid>
+
+                {
+                !services.length ? <CircularProgress /> : (
+                    <Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}>
+                        {services.map((service) => (
+
+                            <Grid key={service._id} item xs={12} sm={6} md={6}>
+                                <ServiceCard service={service} showViewMoreButton={false} owner={true}/>
+                            </Grid>
+                        ))}
+
+                    </Grid>
+                )
+                }
 
             </Grid>
         </Container>

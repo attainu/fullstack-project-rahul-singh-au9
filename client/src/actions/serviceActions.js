@@ -22,7 +22,6 @@ export const allServices = async () => await axios.get(`${process.env.REACT_APP_
 export const sellerServices = async (token, data) =>
   await axios.get(
     `${process.env.REACT_APP_API}/seller-services`,
-    data,
     {
       headers: {
         Authorization: `Bearer ${token}`,

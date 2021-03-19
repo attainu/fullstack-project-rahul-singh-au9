@@ -37,7 +37,7 @@ const getServices = async (req, res) => {
 // GET REQUESTS
 const sellerServices = async (req, res) => {
     try {
-        const sellerAllservices = await serviceModel.find({postedBy: req.user._id});
+        const sellerAllservices = await serviceModel.find({createdBy: req.user.email});
 
         res.status(200).json(sellerAllservices);
     }
