@@ -73,6 +73,26 @@ const deleteService = async (req, res) => {
     }
 }
 
+
+// UPDATE A SERVICE
+const updateService = async (req, res) => {
+
+    const service = req.body;
+
+    try {
+        const _id = req.params.serviceId
+
+        const updatedService = await serviceModel.findByIdAndUpdate(_id,
+            {...service }, {new: true});
+
+        res.status(204).json(updatedService);
+    }
+    catch (err) {
+        res.status(409).json(err);
+    }
+}
+
+
 // const Image = async (req, res) => {
 //     try {
 //         const Service = await serviceModel.findById(req.params.serviceId).exec();
@@ -87,4 +107,4 @@ const deleteService = async (req, res) => {
 //     }
 // }
 
-module.exports = { createService, getServices, getService, sellerServices, deleteService };
+module.exports = { createService, getServices, getService, sellerServices, deleteService, updateService };

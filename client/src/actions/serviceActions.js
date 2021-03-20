@@ -44,7 +44,20 @@ export const deleteService = async (token, serviceId) =>{
     }
     )
 }
-// delete-service/:serviceId
+
+
+// UPDATE A SERVICE
+export const updateService = async (token, data, serviceId) =>
+  await axios.patch(
+    `${process.env.REACT_APP_API}/update-service/${serviceId}`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
 
 // availabe dates
 export const diffDays = (from, to) => {

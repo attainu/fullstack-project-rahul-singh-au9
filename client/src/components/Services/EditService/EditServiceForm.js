@@ -31,7 +31,7 @@ const EditServiceForm = (props) => {
             onSubmit={handleSubmit}
             >
                 <Typography variant="h6">
-                    Add A New Service
+                    Edit Your Service
                 </Typography>
 
                 <TextField
@@ -77,7 +77,7 @@ const EditServiceForm = (props) => {
                 </FormControl>
 
                 {
-                  location &&
+                location &&
                     <AlgoliaPlaces
                     name='location'
                     value={location}
@@ -139,7 +139,7 @@ const EditServiceForm = (props) => {
                     }}
                     />
                 }
-                
+
                 <div className={classes.fileInput}>
                     <FileBase
                     type="file"
