@@ -9,6 +9,7 @@ import '../src/components/FormInput/style.scss'
 import './default.scss'
 import Error from './components/Error';
 import ProductsPage from './pages/ProductsPage';
+import ProductsManager from './pages/ProductsAdd';
 
 
 
@@ -20,6 +21,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/products" component={ProductsPage} />
+        <Route exact path="/addProduct" component={ProductsManager} />
         <Route exact path="/products/:productId" component={ServiceDeatail} />
         <Route exact path="/services/:serviceId" component={ServiceDeatail} />
         <Route exact path="/services/:serviceId/book" component={BookingPage} />

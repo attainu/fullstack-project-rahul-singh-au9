@@ -19,3 +19,31 @@ export const fetchProducts = () => async dispatch => {
     dispatch({ type: TOGGLE_PRODUCT_FETCHING_STATE });
   }
 };
+
+
+export const createProducts = products => async (dispatch, getState) => {
+  // const accessToken = getState().userState.user.access_token;
+  try {
+    dispatch({ type: TOGGLE_PRODUCT_FETCHING_STATE });
+    const { data } = await axios.post(
+      `${config.BASE_PRODPOST_URL}`,
+    
+      {
+        headers: {
+          // Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json"
+        }
+      }
+    );
+    const productObj = getState().ProductState.products;
+    console.log(data);
+    productObj.items.push(data);
+    dispatch({ type: SET_PRODUCTS, payload: { ...productObj } });
+  } catch (err) {
+    console.error(err);
+    // alert(err.response.data.error.message);
+    // dispatch({ type: SET_VIDEOS, payload: { items: [] } });
+  } finally {
+    dispatch({ type: TOGGLE_PRODUCT_FETCHING_STATE });
+  }
+};

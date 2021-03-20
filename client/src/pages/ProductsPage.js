@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import Products from "../components/Products";
 import { fetchProducts } from '../redux/actions/Products.actions'
 
+import '../styles/product.css'
+
 class HomePage extends Component {
   componentDidMount() {
     this.props.fetchProducts();

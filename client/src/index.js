@@ -7,14 +7,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowserRouter } from 'react-router-dom'
 
+import { DataProvider} from './store/GlobalState'
+
 
 
 
 ReactDOM.render(
+
+  <DataProvider>
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Provider>,
+    </Provider>
+    </DataProvider>,
   document.getElementById("root"),
 );
