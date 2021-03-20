@@ -1,13 +1,14 @@
 const express = require("express");
-const { createService, getServices, sellerServices } = require("../controllers/serviceController");
+const { createService, getServices, sellerServices, deleteService } = require("../controllers/serviceController");
 // const auth = require("../middleware/auth");
-const requireSignin = require("../middleware/requireSignin");
+const {requireSignin, serviceOwner} = require("../middleware/requireSignin");
 
 const serviceRouter = express.Router();
 
 serviceRouter.post("/create-service", requireSignin, createService);
 serviceRouter.get("/services", getServices);
 serviceRouter.get("/seller-services", requireSignin, sellerServices);
+serviceRouter.delete("/delete-service/:serviceId", requireSignin, deleteService);
 // serviceRouter.get("/service/image/:serviceId", Image);
 
 

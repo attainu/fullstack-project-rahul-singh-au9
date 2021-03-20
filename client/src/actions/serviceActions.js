@@ -40,7 +40,7 @@ export const deleteService = async (token, serviceId) =>{
     }
     )
 }
-
+// delete-service/:serviceId
 
 // availabe dates
 export const diffDays = (from, to) => {

@@ -46,6 +46,17 @@ const sellerServices = async (req, res) => {
     }
 }
 
+const deleteService = async (req, res) => {
+    try {
+        const deletedService = await serviceModel.findByIdAndDelete(req.params.serviceId).select("-image.data").exec();
+
+        res.status(200).json(deletedService);
+    }
+    catch (error) {
+        res.status(404).send(err);
+    }
+}
+
 // const Image = async (req, res) => {
 //     try {
 //         const Service = await serviceModel.findById(req.params.serviceId).exec();
@@ -60,4 +71,4 @@ const sellerServices = async (req, res) => {
 //     }
 // }
 
-module.exports = { createService, getServices, sellerServices };
+module.exports = { createService, getServices, sellerServices, deleteService };

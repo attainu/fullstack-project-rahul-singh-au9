@@ -74,12 +74,15 @@ const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, show
                     owner && (
                       <>
                         <Link to={`/service/edit/${service._id}`}>
-                          <EditIcon color="primary" style={{marginLeft: "600px"}}/>
+                          <EditIcon
+                          color="primary"
+                          style={{marginLeft: "600px", cursor: "pointer"}}
+                          />
                         </Link>
 
                         <DeleteIcon
                         color="secondary"
-                        style={{marginLeft: "60px"}}
+                        style={{marginLeft: "60px", cursor: "pointer"}}
                         onClick={() => handleServiceDelete(service._id)}
                         />
                       </>

@@ -39,10 +39,10 @@ const SellerDashboard = () => {
         }
     };
 
-    const handleServiceDelete = async (service) => {
+    const handleServiceDelete = async (serviceId) => {
         if(!window.confirm("Are You Sure ?")) return;
 
-        deleteService(auth.token, service?._id).then((res) =>{
+        deleteService(auth.token, serviceId).then((res) =>{
             toast.success("Your Service has been successfully deleted...")
             fetchSellerServices()
         })

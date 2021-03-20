@@ -1,7 +1,7 @@
 const express = require("express");
 const {createStripeAccount, getAccountStatus, getAccountBalance, payoutSetting} = require("../controllers/stripeController");
 const auth = require("../middleware/auth");
-const requireSignin = require("../middleware/requireSignin");
+const {requireSignin} = require("../middleware/requireSignin");
 
 const stripeRouter = express.Router();
 
