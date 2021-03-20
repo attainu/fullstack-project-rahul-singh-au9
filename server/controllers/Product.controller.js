@@ -38,8 +38,24 @@ const Product = require('../models/productModel')
             return res.status(500).json({ message: error.message })
 
         }
+
+        
+  
+    }
+
+    const getProductDetail = async(req, res) => {
+
+      const  { id } = req.params
+        try {
+            const products = await Product.findById(id)
+    
+            return res.status(200).json({  product: products })
+    
+        } catch (error) {
+            return res.status(500).json({ message: error.message })
+        }
     }
 
 
 
-module.exports ={ getProducts,createProducts }
+module.exports ={ getProducts,createProducts, getProductDetail }
