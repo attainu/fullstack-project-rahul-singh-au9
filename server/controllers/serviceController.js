@@ -19,7 +19,7 @@ const createService = async (req, res) => {
 }
 
 
-// GET REQUESTS
+// GET ALL SERVICES REQUESTS
 const getServices = async (req, res) => {
     try {
         const services = await serviceModel.find()
@@ -34,7 +34,22 @@ const getServices = async (req, res) => {
 }
 
 
-// GET REQUESTS
+// GET SINGLE SERVICE
+const getService = async (req, res) => {
+    try {
+        const _id = req.params.serviceId
+        const service = await serviceModel.findById(_id);
+
+        res.status(200).json(service);
+    }
+
+    catch (err) {
+        res.status(404).json(err);
+    }
+};
+
+
+// GET SELLER SERVICES REQUESTS
 const sellerServices = async (req, res) => {
     try {
         const sellerAllservices = await serviceModel.find({createdBy: req.user.email});
@@ -46,6 +61,7 @@ const sellerServices = async (req, res) => {
     }
 }
 
+// DELETE THE SERVICE
 const deleteService = async (req, res) => {
     try {
         const deletedService = await serviceModel.findByIdAndDelete(req.params.serviceId).select("-image.data").exec();
@@ -71,4 +87,4 @@ const deleteService = async (req, res) => {
 //     }
 // }
 
-module.exports = { createService, getServices, sellerServices, deleteService };
+module.exports = { createService, getServices, getService, sellerServices, deleteService };

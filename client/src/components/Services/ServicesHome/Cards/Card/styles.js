@@ -63,7 +63,8 @@ export default makeStyles((theme) => ({
     root: {
         display: 'flex',
         width: 1100,
-        marginLeft: '40px'
+        marginLeft: '40px',
+        border: '1px bold'
     },
 
     details: {

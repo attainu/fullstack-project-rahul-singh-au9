@@ -18,6 +18,10 @@ export const createService = async (token, data) =>
 export const allServices = async () => await axios.get(`${process.env.REACT_APP_API}/services`);
 
 
+// GET SINGLE THE SERVICE
+export const singleService = async (serviceId) => await axios.get(`${process.env.REACT_APP_API}/service/${serviceId}`);
+
+
 // SELLER'S SERVICES FOR SELLER'S DASHBOARD
 export const sellerServices = async (token, data) =>
   await axios.get(

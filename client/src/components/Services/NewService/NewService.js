@@ -48,7 +48,6 @@ const NewService = () => {
         handleSubmit={handleSubmit}
         clear={clear}
         />
-
     );
 };
 
