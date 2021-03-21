@@ -32,7 +32,7 @@ const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, show
                         }
                     </Typography>
 
-                    <Typography component="h5" variant="h5">
+                    <Typography component="h5" variant="h5" color="primary">
                         {service.location}
                     </Typography>
 
@@ -45,7 +45,7 @@ const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, show
                         {diffDays(service.from, service.to) <= 1 ? 'day': 'days'}
                     </Typography> */}
 
-                    <Typography component="h6" variant="h6">
+                    <Typography component="h6" variant="h6" color="primary">
                         Available bookings - { service.total}
                     </Typography>
 

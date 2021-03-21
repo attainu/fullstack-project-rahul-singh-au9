@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
   mainContainer: {
     display: "block",
     alignItems: "center",
+    textDecoration: 'none',
   },
 
   smMargin: {

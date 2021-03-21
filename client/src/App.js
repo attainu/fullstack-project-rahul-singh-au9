@@ -14,6 +14,7 @@ import SellerDashboard from './components/User/Dashboard/SellerDashboard';
 import StripeCallback from './components/User/Stripe/StripeCallback';
 import NewService from './components/Services/NewService/NewService';
 import EditService from './components/Services/EditService/EditService';
+import ViewService from './components/Services/ViewService/ViewService';
 
 const App = () => {
     return (
@@ -31,6 +32,7 @@ const App = () => {
                     <ProtectedRoute exact path='/stripe/callback' component={StripeCallback}/>
                     <ProtectedRoute exact path='/services/new' component={NewService}/>
                     <ProtectedRoute exact path='/service/edit/:serviceId' component={EditService}/>
+                    <Route exact path='/service/:serviceId' component={ViewService}/>
                 </Switch>
             </Container>
         </BrowserRouter>

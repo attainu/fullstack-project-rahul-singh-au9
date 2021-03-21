@@ -4,9 +4,10 @@ export default makeStyles((theme) => ({
 
     root: {
         display: 'flex',
-        width: 1100,
+        width: 1150,
         marginLeft: '40px',
         border: "1px gray solid",
+        textDecoration: 'none',
     },
 
     details: {
@@ -19,7 +20,8 @@ export default makeStyles((theme) => ({
     },
 
     cover: {
-        minWidth: 301,
+        minWidth: 401,
+        minHeight: 401
     },
 
     controls: {
