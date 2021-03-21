@@ -1,3 +1,5 @@
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import {Card, Button, CardContent, CardMedia, Typography} from '@material-ui/core';
 import {currencyFormatter} from '../../../../actions/stripeAction';
 import useStyles from './styles';
@@ -5,6 +7,14 @@ import useStyles from './styles';
 const ServiceCard = ({ service }) => {
 
   const classes = useStyles();
+  const history = useHistory();
+  const {auth} = useSelector((state) =>({...state}));
+
+  const handleClick = (e) => {
+      e.preventDefault()
+      if(!auth) history.push('/auth');
+      console.log('get session id from stripe to show a button > checkout with stripe');
+  }
 
     return (
         <Card className={classes.root}>
@@ -45,8 +55,10 @@ const ServiceCard = ({ service }) => {
 
                 </CardContent>
 
-              <div className={classes.controls} style={{marginLeft: "290px"}}>
-                  <Button color="primary" variant="contained">Book Now</Button>
+              <div className={classes.controls} style={{marginLeft: "290px"}} onClick={handleClick}>
+                  <Button color="primary" variant="contained">
+                      {auth && auth.token ? "Book Now" : "Log-in to Book"}
+                  </Button>
               </div>
 
             </div>
