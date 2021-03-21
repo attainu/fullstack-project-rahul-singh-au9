@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel");
+const serviceModel = require("../models/serviceModel");
 require("dotenv").config();
 const Stripe = require("stripe");
 // this will help us create a  log-in link with some parameters in the url
@@ -96,7 +97,7 @@ const getAccountBalance = async (req, res) => {
 
 
 // STRIPE ACCOUNT PAYOUT SETTINGS
-export const payoutSetting = async (req, res) => {
+const payoutSetting = async (req, res) => {
     //1. find user from DB
     const User = await userModel.findById(req.user.id).exec();
 
@@ -112,4 +113,60 @@ export const payoutSetting = async (req, res) => {
     }
 }
 
-module.exports = {createStripeAccount, getAccountStatus, getAccountBalance, payoutSetting}
+// STRIPE SESSION-ID
+const stripeSessionId = async (req, res) => {
+
+    // console.log("you hit stripe session id", req.body.serviceId);
+
+    // 1 get hotel id from req.body
+    const { serviceId } = req.body;
+
+    try {
+
+    // 2 find the service based on service id from db
+    const item = await serviceModel.findById(serviceId).exec();
+
+    // 3 20% charge as application fee
+    const fee = (item.price * 20) / 100;
+
+    // 4 create a session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+
+      // 5 purchasing item details, it will be shown to user on checkout
+      line_items: [
+        {
+          name: item.title,
+          amount: item.price * 100, // in cents
+          currency: "usd",
+          quantity: 1,
+        },
+      ],
+
+      // 6 create payment intent with application fee and destination charge 80%
+      payment_intent_data: {
+        application_fee_amount: fee * 100,
+        // this seller can see his balance in our frontend dashboard
+        transfer_data: {
+          destination: item.createdBy.stripe_account_id,
+        },
+      },
+
+      // success and calcel urls
+      success_url: process.env.STRIPE_SUCCESS_URL,
+      cancel_url: process.env.STRIPE_CANCEL_URL,
+    });
+
+    // 7 add this session object to user in the db
+    await userModel.findByIdAndUpdate(req.user._id, { stripeSession: session }).exec();
+    // 8 send session id as resposne to frontend
+    res.send({
+      sessionId: session.id,
+  });
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+module.exports = {createStripeAccount, getAccountStatus, getAccountBalance, payoutSetting, stripeSessionId};

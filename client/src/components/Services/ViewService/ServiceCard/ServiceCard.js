@@ -1,19 +1,22 @@
-import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
-import {Card, Button, CardContent, CardMedia, Typography} from '@material-ui/core';
-import {currencyFormatter} from '../../../../actions/stripeAction';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Card, Button, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { currencyFormatter, getSesstionId } from '../../../../actions/stripeAction';
 import useStyles from './styles';
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, match }) => {
 
   const classes = useStyles();
   const history = useHistory();
   const {auth} = useSelector((state) =>({...state}));
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
       e.preventDefault()
       if(!auth) history.push('/auth');
-      console.log('get session id from stripe to show a button > checkout with stripe');
+
+      // console.log(auth.token, match, match.params.serviceId)
+      let res = await getSesstionId(auth.token, match.params.serviceId);
+      console.log("GET SESSION RESPONSE ===>", res.data.sessionId);
   }
 
     return (

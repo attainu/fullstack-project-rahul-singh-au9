@@ -16,11 +16,11 @@ const Dashboard = () => {
 
   return (
     <>
-      <div>
+      <div style={{marginTop: '45px'}}>
         <h1> <center>Your Dashboard</center> </h1>
       </div>
       <Grow in>
-          <Container>
+          <Container style={{marginTop: '20px'}}>
               <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
                     <Grid item xs={12} sm={7}>

@@ -53,7 +53,6 @@ const EditService = ({match}) => {
 
     return (
       <>
-        <h1>Edit service</h1>
         <EditServiceForm
         values={values}
         setValues={setValues}

@@ -1,10 +1,11 @@
 import React from 'react';
+import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import { Container} from '@material-ui/core';
+// import { Container} from '@material-ui/core';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Home from './components/Home/Home';
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Home/Navbar/Navbar';
 import Auth from './components/Auth/Auth';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Dashboard from './components/User/Dashboard';
@@ -19,7 +20,7 @@ import ViewService from './components/Services/ViewService/ViewService';
 const App = () => {
     return (
         <BrowserRouter>
-            <Container maxWidth='lg'>
+            <div>
                 <Navbar/>
                 <ToastContainer position='top-center'/>
                 <Switch>
@@ -34,7 +35,7 @@ const App = () => {
                     <ProtectedRoute exact path='/service/edit/:serviceId' component={EditService}/>
                     <Route exact path='/service/:serviceId' component={ViewService}/>
                 </Switch>
-            </Container>
+            </div>
         </BrowserRouter>
     );
 };

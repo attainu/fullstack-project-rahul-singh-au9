@@ -56,7 +56,7 @@ export const createStripeAccount = async (token) =>
 
   // ACCOUNT STATUS
 export const getAccountStatus = async (token) =>
-  axios.post(
+  await axios.post(
     `${process.env.REACT_APP_API}/get-account-status`,
     {},
     {
@@ -68,7 +68,7 @@ export const getAccountStatus = async (token) =>
 
   // ACCOUNT BALANCE
 export const getAccountBalance = async (token) =>
-  axios.post(
+  await axios.post(
     `${process.env.REACT_APP_API}/get-account-balance`,
     {},
     {
@@ -89,9 +89,24 @@ export const currencyFormatter = (data) => {
 
 // PAYOUT SETTING
 export const payoutSetting = async (token) =>
-  axios.post(
+  await axios.post(
     `${process.env.REACT_APP_API}/payout-setting`,
     {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+
+// BOOKING / GET STRIPE SESSION ID
+export const getSesstionId = async (token, serviceId) =>
+  await axios.post(
+    `${process.env.REACT_APP_API}/stripe-session-id`,
+    {
+      serviceId
+    },
     {
       headers: {
         Authorization: `Bearer ${token}`,
