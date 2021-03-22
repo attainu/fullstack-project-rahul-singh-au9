@@ -7,7 +7,7 @@ const createService = async (req, res) => {
 
     const service = req.body;
     const createdService = new serviceModel({...service, createdBy: service.postedBy, createdAt: new Date().toISOString()})
-    createdService.postedBy = req.user._id
+    createdService.postedBy = service.postedBySeller
 
     try {
         insertedService = await createdService.save();
@@ -23,12 +23,12 @@ const createService = async (req, res) => {
 const getServices = async (req, res) => {
     try {
         const services = await serviceModel.find()
-        .limit(24).populate("postedBy", "_id name");
+        .limit(24);
 
         res.status(200).json(services);
     }
 
-    catch (error) {
+    catch (err) {
         res.status(404).send(err);
     }
 }
@@ -56,7 +56,7 @@ const sellerServices = async (req, res) => {
 
         res.status(200).json(sellerAllservices);
     }
-    catch (error) {
+    catch (err) {
         res.status(404).send(err);
     }
 }
@@ -68,7 +68,7 @@ const deleteService = async (req, res) => {
 
         res.status(200).json(deletedService);
     }
-    catch (error) {
+    catch (err) {
         res.status(404).send(err);
     }
 }
@@ -102,7 +102,7 @@ const updateService = async (req, res) => {
 //             return res.send(Service.image.data);
 //         }
 //     }
-//     catch (error) {
+//     catch (err) {
 //         res.status(404).send(err);
 //     }
 // }

@@ -16,6 +16,13 @@ import StripeCallback from './components/User/Stripe/StripeCallback';
 import NewService from './components/Services/NewService/NewService';
 import EditService from './components/Services/EditService/EditService';
 import ViewService from './components/Services/ViewService/ViewService';
+import ServicesHome from './components/Services/ServicesHome/Home';
+import ElectriansAndAC from './components/Services/optionService/Electricians/ElectriansAndAC'
+import Men from './components/Services/optionService/Men/Men';
+import Women from './components/Services/optionService/Women/Women';
+import CleaningAndPest from './components/Services/optionService/Cleaning/CleaningAndPest';
+import PlumbCarpPaint from './components/Services/optionService/PCP/PlumbCarpPaint';
+
 
 const App = () => {
     return (
@@ -33,7 +40,13 @@ const App = () => {
                     <ProtectedRoute exact path='/stripe/callback' component={StripeCallback}/>
                     <ProtectedRoute exact path='/services/new' component={NewService}/>
                     <ProtectedRoute exact path='/service/edit/:serviceId' component={EditService}/>
+                    <Route exact path='/services' component={ServicesHome}/>
                     <Route exact path='/service/:serviceId' component={ViewService}/>
+                    <Route exact path='/services/Electrians&AC' component={ElectriansAndAC}/>
+                    <Route exact path='/services/Men' component={Men}/>
+                    <Route exact path='/services/Women' component={Women}/>
+                    <Route exact path='/services/CleaningAndPest' component={CleaningAndPest}/>
+                    <Route exact path='/services/PlumbCarpPaint' component={PlumbCarpPaint}/>
                 </Switch>
             </div>
         </BrowserRouter>

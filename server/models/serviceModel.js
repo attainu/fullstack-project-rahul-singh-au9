@@ -31,8 +31,7 @@ const serviceSchema = mongoose.Schema({
   },
 
   postedBy: {
-    type: ObjectId,
-    ref: "User"
+    type: String,
   },
 
   createdBy: {
@@ -60,6 +59,10 @@ const serviceSchema = mongoose.Schema({
   createdAt: {
     type: Date,
     default: new Date()
+  },
+
+  option: {
+    type: String
   }
 
 }, {timestamps: true});

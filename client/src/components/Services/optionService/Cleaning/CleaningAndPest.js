@@ -1,10 +1,10 @@
 import React, { useState, useEffect} from 'react';
-import { allServices } from '../../../actions/serviceActions';
+import { allServices } from '../../../../actions/serviceActions';
 import { Container, Grow, Grid } from '@material-ui/core';
 import Cards from './Cards/Cards';
 
 
-const Home = () => {
+const CleaningAndPest = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
         fetchAllServices();
@@ -30,4 +30,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default CleaningAndPest;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom'
 import {Card, Button, CardContent, CardMedia, Typography} from '@material-ui/core';
-import {currencyFormatter} from '../../../../../actions/stripeAction';
+import {currencyFormatter} from '../../../../../../actions/stripeAction';
 // import {diffDays} from '../../../../../actions/serviceActions';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -13,6 +13,10 @@ const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, show
   const history = useHistory();
 
     return (
+      <>
+      {
+      service.option == ("Painters" || "Plumbers" || "Carpenters") &&
+
         <Card className={classes.root}>
             <CardMedia
               className={classes.cover}
@@ -92,6 +96,8 @@ const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, show
 
             </div>
         </Card>
+      }
+    </>
     );
 }
 

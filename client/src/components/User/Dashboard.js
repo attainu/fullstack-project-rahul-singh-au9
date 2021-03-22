@@ -31,7 +31,7 @@ const Dashboard = () => {
                                 <DashboardProfile/>
 
                                 { auth && auth.result && auth.result.stripe_seller &&
-// auth.result.stripe_seller.charges_enabled &&
+                                // auth.result.stripe_seller.charges_enabled &&
                                 (
                                 <>
                                   <Balance/>

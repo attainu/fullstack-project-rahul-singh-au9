@@ -18,24 +18,24 @@ const ViewService = ({match}) => {
     }
 
     return (
-      <Card style={{minHeight: '600px'}}>
-        <div>
-          <h1><center> {service.title} </center></h1>
-        </div>
+        <Card style={{minHeight: '600px', paddingTop: '20px'}}>
+            <div>
+                <h1><center> {service.title} </center></h1>
+            </div>
 
-        <Grow in>
-            <Container>
-                <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+            <Grow in>
+                <Container>
+                    <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
-                    <Grid item xs={12} sm={12}>
-                        <ServiceCard service={service} match={match} />
+                        <Grid item xs={12} sm={12}>
+                            <ServiceCard service={service} match={match} />
+                        </Grid>
+
                     </Grid>
-
-                </Grid>
-            </Container>
-        </Grow>
-      </Card>
-  )
+                </Container>
+            </Grow>
+        </Card>
+    )
 }
 
 export default ViewService;
