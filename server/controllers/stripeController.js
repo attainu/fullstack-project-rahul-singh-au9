@@ -20,21 +20,21 @@ const createStripeAccount = async (req,res) => {
       //2. if user doesn't have stripe_account_id yet, create now
       if (!User.stripe_account_id) {
 
-        const account = await stripe.accounts.create({
-          country: 'US',
-          type: "express",
-        })
-        // console.log("ACCOUNT ===>", account)
-        User.stripe_account_id = account.id
-        User.save();
+          const account = await stripe.accounts.create({
+            country: 'SE',
+            type: "express",
+          })
+          // console.log("ACCOUNT ===>", account)
+          User.stripe_account_id = account.id
+          User.save();
       };
 
       // 3. create login link based on account id (for frontend to complete onboarding)
         let accountLink = await stripe.accountLinks.create({
-          account: User.stripe_account_id,
-          refresh_url: process.env.STRIPE_REDIRECT_URL,
-          return_url: process.env.STRIPE_REDIRECT_URL,
-          type: "account_onboarding",
+            account: User.stripe_account_id,
+            refresh_url: process.env.STRIPE_REDIRECT_URL,
+            return_url: process.env.STRIPE_REDIRECT_URL,
+            type: "account_onboarding",
         });
 
         // console.log(accountLink)
@@ -42,7 +42,7 @@ const createStripeAccount = async (req,res) => {
 
       // prefill any info such as email
         accountLink = Object.assign(accountLink, {
-          "stripe_user[email]": User.email || undefined,
+            "stripe_user[email]": User.email || undefined,
         });
 
       // console.log("ACCOUNT LINK", accountLink);
@@ -85,13 +85,13 @@ const getAccountBalance = async (req, res) => {
     const User = await userModel.findById(req.user.id).exec();
 
     try {
-      const balance = await stripe.balance.retrieve({
-        stripeAccount: User.stripe_account_id
-      });
-      // console.log("BALANCE ===>", balance)
-      res.json(balance)
+        const balance = await stripe.balance.retrieve({
+          stripeAccount: User.stripe_account_id
+        });
+        // console.log("BALANCE ===>", balance)
+        res.json(balance)
     } catch(error){
-      console.log(error);
+        console.log(error);
     }
 }
 
@@ -108,7 +108,7 @@ const payoutSetting = async (req, res) => {
       // console.log("LOG-IN LINK PAYOUT SETTINGS ====>", loginLink)
       res.json(loginLink)
     } catch (error) {
-      console.log("PAYOUT SETTINGS ERROR ====>",error)
+        console.log("PAYOUT SETTINGS ERROR ====>",error)
 
     }
 }
@@ -145,11 +145,11 @@ const stripeSessionId = async (req, res) => {
 
       // 6 create payment intent with application fee and destination charge 80%
       payment_intent_data: {
-        application_fee_amount: fee * 100,
-        // this seller can see his balance in our frontend dashboard
-        transfer_data: {
-          destination: item.createdBy.stripe_account_id,
-        },
+          // application_fee_amount: fee * 100,
+          // this seller can see his balance in our frontend dashboard
+          transfer_data: {
+            destination: item.createdBy.stripe_account_id,
+          },
       },
 
       // success and calcel urls
@@ -158,10 +158,11 @@ const stripeSessionId = async (req, res) => {
     });
 
     // 7 add this session object to user in the db
-    await userModel.findByIdAndUpdate(req.user._id, { stripeSession: session }).exec();
+    await userModel.findByIdAndUpdate(req.user.id, { stripeSession: session }).exec();
     // 8 send session id as resposne to frontend
+    console.log(req.user.id)
     res.send({
-      sessionId: session.id,
+        sessionId: session.id,
   });
 
     } catch (error) {

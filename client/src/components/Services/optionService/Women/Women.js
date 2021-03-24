@@ -18,7 +18,7 @@ const Women = () => {
 
     return (
         <Grow in>
-            <Container style={{marginTop: "45px"}}>
+            <Container>
                 <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
                     <Grid item xs={12} sm={12}>

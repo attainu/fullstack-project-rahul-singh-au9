@@ -14,7 +14,6 @@ const Home = () => {
         let res = await allServices();
         setServices(res.data);
     }
-    console.log(services)
 
     return (
         <Grow in>

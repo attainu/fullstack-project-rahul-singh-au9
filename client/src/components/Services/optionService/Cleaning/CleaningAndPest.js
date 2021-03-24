@@ -14,11 +14,11 @@ const CleaningAndPest = () => {
         let res = await allServices();
         setServices(res.data);
     }
-    console.log(services)
+    // console.log(services)
 
     return (
         <Grow in>
-            <Container style={{marginTop: "45px"}}>
+            <Container>
                 <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
                     <Grid item xs={12} sm={12}>

@@ -62,17 +62,17 @@ const NewServiceForm = (props) => {
                     onChange={(e) => setValues({ ...values, option: e.target.value })}
                     >
                     <option aria-label="None" value="" />
-                    <option value={"Salon For Women"}>Salon For Women</option>
-                    <option value={"Message for Women"}>Message for Women</option>
-                    <option value={"Salon For Men"}>Salon For Men</option>
-                    <option value={"Message for Men"}>Message for Men</option>
-                    <option value={"Ac Service and Repair"}>Ac Service and Repair</option>
+                    <option value={"Women"}>Salon For Women</option>
+                    <option value={"Women"}>Message for Women</option>
+                    <option value={"Men"}>Salon For Men</option>
+                    <option value={"Men"}>Message for Men</option>
+                    <option value={"Electricians"}>Ac Service and Repair</option>
                     <option value={"Painters"}>Painters</option>
-                    <option value={"Cleaning and disinfection"}>Cleaning and disinfection</option>
+                    <option value={"Cleaning"}>Cleaning and disinfection</option>
                     <option value={"Electricians"}>Electricians</option>
-                    <option value={"Plumbers"}>Plumbers</option>
-                    <option value={"Carpenters"}>Carpenters</option>
-                    <option value={"Pest Control"}>Pest Control</option>
+                    <option value={"Painters"}>Plumbers</option>
+                    <option value={"Painters"}>Carpenters</option>
+                    <option value={"Cleaning"}>Pest Control</option>
                     </Select>
                 </FormControl>
 

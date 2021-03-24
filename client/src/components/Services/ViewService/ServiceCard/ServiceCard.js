@@ -54,7 +54,7 @@ const ServiceCard = ({ service, match }) => {
                     </Typography>
 
                     <Typography component="h5" variant="h5">
-                      <br/><center>Posted By - { service.createdBy}</center>
+                      <br/><center>Posted By - { service.postedBy}</center>
                     </Typography>
 
                 </CardContent>

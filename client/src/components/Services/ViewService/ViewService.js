@@ -13,8 +13,8 @@ const ViewService = ({match}) => {
     }, [])
 
     const fetchService = async () => {
-      let res = await singleService(match.params.serviceId);
-      setService(res.data);
+        let res = await singleService(match.params.serviceId);
+        setService(res.data);
     }
 
     return (

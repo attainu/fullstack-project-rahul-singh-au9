@@ -15,7 +15,7 @@ const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, show
     return (
       <>
       {
-      service.option == ("Painters" || "Plumbers" || "Carpenters") &&
+      service.option == ("Painters") &&
 
         <Card className={classes.root}>
             <CardMedia
