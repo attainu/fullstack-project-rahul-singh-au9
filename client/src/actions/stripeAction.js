@@ -1,6 +1,6 @@
-import {CREATE_STRIPE_ACCOUNT} from '../constants/actionTypes';
-import * as api from "../api/index.js";
-import { toast } from 'react-toastify';
+// import {CREATE_STRIPE_ACCOUNT} from '../constants/actionTypes';
+// import * as api from "../api/index.js";
+// import { toast } from 'react-toastify';
 
 // // CREATE_STRIPE_ACCOUNT ACTION
 // export const createStripeAccount = (router) => async (dispatch) => {
@@ -80,7 +80,7 @@ export const getAccountBalance = async (token) =>
 
   // CURRENCY FORMATTER
 export const currencyFormatter = (data) => {
-  return (data.amount).toLocaleString(data.currency, {
+  return (data.amount/100).toLocaleString(data.currency, {
     style: "currency",
     currency: data.currency,
   });
@@ -100,7 +100,7 @@ export const payoutSetting = async (token) =>
   );
 
 
-// BOOKING / GET STRIPE SESSION ID
+// BOOKING GET STRIPE SESSION ID
 export const getSesstionId = async (token, serviceId) =>
   await axios.post(
     `${process.env.REACT_APP_API}/stripe-session-id`,
@@ -113,3 +113,15 @@ export const getSesstionId = async (token, serviceId) =>
       },
     }
   );
+
+
+// STRIPE SUCCESS REQUEST
+export const stripeSuccessRequest = async (token, serviceId) =>
+    await axios.post(
+      `${process.env.REACT_APP_API}/stripe-success`,{serviceId},
+      {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      }
+    )

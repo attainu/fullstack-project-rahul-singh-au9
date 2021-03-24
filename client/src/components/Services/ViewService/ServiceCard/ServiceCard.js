@@ -1,22 +1,31 @@
+import {useState} from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Card, Button, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { currencyFormatter, getSesstionId } from '../../../../actions/stripeAction';
 import useStyles from './styles';
+import {loadStripe} from '@stripe/stripe-js';
 
 const ServiceCard = ({ service, match }) => {
 
   const classes = useStyles();
   const history = useHistory();
   const {auth} = useSelector((state) =>({...state}));
+  const [loading, setLoading] = useState(false);
 
   const handleClick = async (e) => {
-      e.preventDefault()
+      e.preventDefault();
+      setLoading(true);
       if(!auth) history.push('/auth');
 
       // console.log(auth.token, match, match.params.serviceId)
       let res = await getSesstionId(auth.token, match.params.serviceId);
-      console.log("GET SESSION RESPONSE ===>", res.data.sessionId);
+      // console.log("GET SESSION RESPONSE ===>", res.data.sessionId);
+      const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY);
+      stripe.redirectToCheckout({
+          sessionId: res.data.sessionId
+      })
+      .then((result) => console.log(result));
   }
 
     return (
@@ -35,7 +44,7 @@ const ServiceCard = ({ service, match }) => {
                       <center>{service.location}</center>
                       <center>
                       {
-                      service?.price && currencyFormatter({ amount: service.price, currency: "usd"})
+                      service?.price && currencyFormatter({ amount: service.price * 100, currency: "usd"})
                       }
                       </center>
                     </Typography>
@@ -60,8 +69,8 @@ const ServiceCard = ({ service, match }) => {
                 </CardContent>
 
               <div className={classes.controls} style={{marginLeft: "290px"}} onClick={handleClick}>
-                  <Button color="primary" variant="contained">
-                      {auth && auth.token ? "Book Now" : "Log-in to Book"}
+                  <Button color="primary" variant="contained" disabled={loading}>
+                      { loading ? "loading..." : auth && auth.token ? "Book Now" : "Log-in to Book"}
                   </Button>
               </div>
 

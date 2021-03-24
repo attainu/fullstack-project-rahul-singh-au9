@@ -30,7 +30,7 @@ const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, show
                     <Typography component="h5" variant="h5" color="primary">
                         {service.title}  {
                           currencyFormatter({
-                            amount: service.price,
+                            amount: service.price * 100,
                             currency: "usd"
                           })
                         }

@@ -1,9 +1,10 @@
 const userModel = require("../models/userModel");
 const serviceModel = require("../models/serviceModel");
+const orderModel = require("../models/orderModel");
 require("dotenv").config();
 const Stripe = require("stripe");
-// this will help us create a  log-in link with some parameters in the url
 const stripe = Stripe(process.env.STRIPE_SECRET);
+// this will help us create a  log-in link with some parameters in the url
 const queryString = require("query-string");
 
 
@@ -15,7 +16,7 @@ const createStripeAccount = async (req,res) => {
     try {
       //1. find user from DB
       const User = await userModel.findById(req.user.id).exec();
-      console.log("User ===>" ,User)
+      // console.log("User ===>" ,User)
 
       //2. if user doesn't have stripe_account_id yet, create now
       if (!User.stripe_account_id) {
@@ -125,6 +126,7 @@ const stripeSessionId = async (req, res) => {
 
     // 2 find the service based on service id from db
     const item = await serviceModel.findById(serviceId).exec();
+    // console.log(item)
 
     // 3 20% charge as application fee
     const fee = (item.price * 20) / 100;
@@ -153,14 +155,15 @@ const stripeSessionId = async (req, res) => {
       },
 
       // success and calcel urls
-      success_url: process.env.STRIPE_SUCCESS_URL,
+      success_url: `${process.env.STRIPE_SUCCESS_URL}/${item._id}`,
       cancel_url: process.env.STRIPE_CANCEL_URL,
     });
 
     // 7 add this session object to user in the db
     await userModel.findByIdAndUpdate(req.user.id, { stripeSession: session }).exec();
+
     // 8 send session id as resposne to frontend
-    console.log(req.user.id)
+    // console.log(req.user.id)
     res.send({
         sessionId: session.id,
   });
@@ -168,6 +171,52 @@ const stripeSessionId = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-
 }
-module.exports = {createStripeAccount, getAccountStatus, getAccountBalance, payoutSetting, stripeSessionId};
+
+
+const stripeSuccess = async (req, res) => {
+    // console.log("you hit the stripe success url");
+
+    // 1. get the serviceId from body
+    const {serviceId} = req.body;
+
+    try {
+    // 2. find currently logged-in user
+    const user = await userModel.findById(req.user.id).exec();
+    // console.log(req.user)
+    // console.log(user)
+
+    // 3. retrieve stripeSession
+    const session = await stripe.checkout.sessions.retrieve(user.stripeSession.id)
+
+    // check if the user has stirpeSession
+    if(!user.stripeSession) return;
+
+    // 4. if session payment status is paid , create order
+    if(session.payment_status === "paid") {
+      // 5. check if order with that sessin id already exist by querying orders collection
+      const orderExist = await orderModel.findOne({"session.id": session.id}).exec();
+      if(orderExist) {
+        //  6. if order exist, send success true
+        res.json({success: true});
+      } else{
+        // 7. else create new order and send success true
+        let newOrder = await new orderModel({
+            Service: serviceId,
+            session,
+            orderedBy: user._id
+        }).save();
+
+        // 8. remove user's stripeSession
+        await userModel.findByIdAndUpdate(user.id, {
+          $set: {stripeSession: {}}
+        });
+        res.json({success: true});
+      }
+    }
+    } catch (error) {
+      console.log("STIPE SUCCESS ERROR ===>", error);
+    }
+}
+
+module.exports = {createStripeAccount, getAccountStatus, getAccountBalance, payoutSetting, stripeSessionId, stripeSuccess};

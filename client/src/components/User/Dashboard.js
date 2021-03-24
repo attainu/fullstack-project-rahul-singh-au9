@@ -1,10 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux';
 import DashboardProfile from './Profile/DashboardProfile';
 import Balance from './Balance/Balance';
 import Payout from './Payout/Payout';
-import { Grow, Container, Grid, Paper, Card } from "@material-ui/core";
+import { Grow, Container, Grid } from "@material-ui/core";
 import useStyles from './styles';
 import DashboardNav from './Navbar/DashboardNav';
 
@@ -12,7 +11,6 @@ import DashboardNav from './Navbar/DashboardNav';
 const Dashboard = () => {
   const classes = useStyles();
   const {auth} = useSelector((state) =>({...state}));
-  const {result} = auth;
 
   return (
     <>
@@ -31,7 +29,7 @@ const Dashboard = () => {
                                 <DashboardProfile/>
 
                                 { auth && auth.result && auth.result.stripe_seller &&
-                                // auth.result.stripe_seller.charges_enabled &&
+                                auth.result.stripe_seller.charges_enabled &&
                                 (
                                 <>
                                   <Balance/>

@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-// import { Container} from '@material-ui/core';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Home from './components/Home/Home';
@@ -10,8 +9,6 @@ import Auth from './components/Auth/Auth';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Dashboard from './components/User/Dashboard';
 import Profile from './components/User/Profile/Profile';
-import UserDashboard from './components/User/Dashboard/UserDashboard';
-import SellerDashboard from './components/User/Dashboard/SellerDashboard';
 import StripeCallback from './components/User/Stripe/StripeCallback';
 import NewService from './components/Services/NewService/NewService';
 import EditService from './components/Services/EditService/EditService';
@@ -22,6 +19,8 @@ import Men from './components/Services/optionService/Men/Men';
 import Women from './components/Services/optionService/Women/Women';
 import CleaningAndPest from './components/Services/optionService/Cleaning/CleaningAndPest';
 import PlumbCarpPaint from './components/Services/optionService/PCP/PlumbCarpPaint';
+import StripeSuccess from './components/User/Stripe/StripeSuccess';
+import StripeCancel from './components/User/Stripe/StripeCancel';
 
 
 const App = () => {
@@ -35,8 +34,6 @@ const App = () => {
                     <Route exact path='/auth' component={Auth}/>
                     <ProtectedRoute exact path='/dashboard' component={Dashboard}/>
                     <ProtectedRoute exact path='/profile' component={Profile}/>
-                    <ProtectedRoute exact path='/userDashboard' component={UserDashboard}/>
-                    <ProtectedRoute exact path='/sellerDashboard' component={SellerDashboard}/>
                     <ProtectedRoute exact path='/stripe/callback' component={StripeCallback}/>
                     <ProtectedRoute exact path='/services/new' component={NewService}/>
                     <ProtectedRoute exact path='/service/edit/:serviceId' component={EditService}/>
@@ -47,6 +44,8 @@ const App = () => {
                     <Route exact path='/services/Women' component={Women}/>
                     <Route exact path='/services/CleaningAndPest' component={CleaningAndPest}/>
                     <Route exact path='/services/PlumbCarpPaint' component={PlumbCarpPaint}/>
+                    <ProtectedRoute exact path='/stripe/success/:serviceId' component={StripeSuccess}/>
+                    <ProtectedRoute exact path='/service/cancel' component={StripeCancel}/>
                 </Switch>
             </div>
         </BrowserRouter>

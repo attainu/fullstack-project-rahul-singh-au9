@@ -132,7 +132,8 @@ const SellerDashboard = () => {
     return (
         <>
         {
-            auth && auth?.result && auth.result.stripe_seller ? connected() : notConnected()
+            auth && auth?.result && auth.result.stripe_seller &&
+            auth.result.stripe_seller.charges_enabled ? connected() : notConnected()
         }
 
         {/* {
