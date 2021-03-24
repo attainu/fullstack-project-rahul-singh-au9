@@ -20,7 +20,7 @@ const Product = require('../models/productModel')
         
 
             const products = await Product.create({ ...req.body })
-
+            console.log(products)
             // if (req.file) {
             //     let ProdPic = bufferConversion(req.file.originalname, req.file.buffer);
             //     let imgResponse = await cloudinary.uploader.upload(ProodPic);
@@ -30,6 +30,7 @@ const Product = require('../models/productModel')
           
 
             await products.save()
+
 
             return res.status(200).json({ message: 'Success', data: Product })
 

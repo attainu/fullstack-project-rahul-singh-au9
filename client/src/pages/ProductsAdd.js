@@ -7,9 +7,11 @@ import {DataContext} from '../store/GlobalState'
 import {postData, getData, putData} from '../utils/fetchData'
 
 import { useSelector,useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 import { createProducts } from '../redux/actions/Products.actions'
+
+import '../styles/products_manager.css'
 
 
 const ProductsManager = () => {
@@ -21,7 +23,11 @@ const ProductsManager = () => {
         content: '',
         category: ''
     }
+
+   
+ 
     const {id} = useParams()
+
     const product = useSelector(state => state.ProductState )
     const disspatch = useDispatch()
     const [products, setProduct] = useState(initialState)
@@ -92,11 +98,14 @@ const ProductsManager = () => {
         // if(auth.user.role !== 'admin') 
         // return dispatch({type: 'NOTIFY', payload: {error: 'Authentication is not valid.'}})
 
-        if(!title || !price || !inStock || !description || !content || category === 'all' || images.length === 0)
-        return dispatch({type: 'NOTIFY', payload: {error: 'Please add all the fields.'}})
+        // if(!title || !price || !inStock || !description || !content || category === 'all' || images.length === 0)
+        // return dispatch({type: 'NOTIFY', payload: {error: 'Please add all the fields.'}})
 
 
-     console.log(  products )
+    
+    
+     
+
 
          
     
@@ -106,43 +115,49 @@ const ProductsManager = () => {
         const imgOldURL = images.filter(img => img.url)
 
         if(imgNewURL.length > 0) media = await imageUpload(imgNewURL)
+      
 
-        disspatch(createProducts(setProduct(products)))
+       
 
         let res;
         if(onEdit){
             res = await putData(`product/${id}`, {...product, images: [...imgOldURL, ...media]})
             if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
         }else{
-            res = await postData('product', {...product, images: [...imgOldURL, ...media]})
+            // res = await postData('product', {...product, images: [...imgOldURL, ...media]})
+           const productss ={...products, images: [...imgOldURL, ...media]}
+                 return disspatch(createProducts(productss))
+        
+            console.log( productss)
             if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
         }
+       
 
         return dispatch({type: 'NOTIFY', payload: {success: res.msg}})
         
     }
 
     return(
-        <div className="products_manager">
+        <div className="products_manager" style={{color:"black"}}  >
           
             <form className="row" onSubmit={handleSubmit}>
                 <div className="col-md-6">
                     
-                    <input type="text" name="title" value={title}
+                    <input style={{borderColor:"black"}}type="text" name="title" value={title}
                     placeholder="Title" className="d-block my-4 w-100 p-2"
                     onChange={handleChangeInput} />
 
                     <div className="row">
                         <div className="col-sm-6">
-                            <label htmlFor="price">Price</label>
-                            <input type="number" name="price" value={price}
+                            <label style={{color:"black"}} htmlFor="price">Price</label>
+                            <input style={{borderColor:"black"}} type="number" name="price" value={price}
                             placeholder="Price" className="d-block w-100 p-2"
                             onChange={handleChangeInput}  />
                         </div>
 
                         <div className="col-sm-6">
                             <label htmlFor="price">In Stock</label>
-                            <input type="number" name="inStock" value={inStock}
+                            <input style={{borderColor:"black"}} type="number" name="inStock" value={inStock}
                             placeholder="inStock" className="d-block w-100 p-2"
                             onChange={handleChangeInput} 
                             />
