@@ -8,7 +8,9 @@ const Cards = ({bookings}) => {
     const classes = useStyles();
 
     return (
-        !bookings?.length ? <CircularProgress /> : (
+        !bookings?.length ?
+        <CircularProgress style={{marginLeft: '45%', marginTop:'3%'}}/>
+        : (
             <Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}>
                 {bookings.map((booking) => (
 

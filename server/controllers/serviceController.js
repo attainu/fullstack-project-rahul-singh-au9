@@ -24,7 +24,7 @@ const createService = async (req, res) => {
 // GET ALL SERVICES REQUESTS
 const getServices = async (req, res) => {
     try {
-        const services = await serviceModel.find()
+        const services = await serviceModel.find({to: {$gte: new Date()}})
         .limit(24);
 
         res.status(200).json(services);
@@ -101,7 +101,7 @@ const userServiceBookings = async (req, res) => {
         const userBookings = await orderModel.find({ orderedBy: req.user.id})
         .select('session')
         .populate('Service')
-        .populate('orderedBy', '_id')
+        .populate('orderedBy', '_id name')
         .exec();
         res.status(200).json(userBookings);
     }

@@ -15,13 +15,19 @@ const ServiceCard = ({ service, match }) => {
 
   const handleClick = async (e) => {
       e.preventDefault();
+
+      if(!auth || !auth.token) {
+          history.push('/auth')
+          return;
+      }
       setLoading(true);
-      if(!auth) history.push('/auth');
 
       // console.log(auth.token, match, match.params.serviceId)
       let res = await getSesstionId(auth.token, match.params.serviceId);
       // console.log("GET SESSION RESPONSE ===>", res.data.sessionId);
+
       const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY);
+      
       stripe.redirectToCheckout({
           sessionId: res.data.sessionId
       })

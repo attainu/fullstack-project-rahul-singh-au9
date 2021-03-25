@@ -71,7 +71,9 @@ const SellerDashboard = () => {
                 </Grid>
 
                 {
-                !services.length ? <CircularProgress /> : (
+                !services.length ?
+                <CircularProgress style={{marginLeft: '45%', marginTop:'3%'}}/>
+                : (
                     <Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}>
                         {services.map((service) => (
 

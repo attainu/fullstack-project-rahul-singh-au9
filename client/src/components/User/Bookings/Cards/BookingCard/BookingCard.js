@@ -1,15 +1,13 @@
-import React from 'react';
-import { useHistory, Link } from 'react-router-dom'
-import {Card, Button, CardContent, CardMedia, Typography} from '@material-ui/core';
+import {Card, CardContent, CardMedia, Typography} from '@material-ui/core';
 import {currencyFormatter} from '../../../../../actions/stripeAction';
 // import {diffDays} from '../../../../../actions/serviceActions';
 import useStyles from './styles';
+import BookingModal from '../../../Modal/BookingModal';
 
-const BookingCard = ({booking, showViewMoreButton=true}) => {
+const BookingCard = ({ booking }) => {
     // further destructing values from state
     const { Service, orderedBy, session } = booking;
     const classes = useStyles();
-    const history = useHistory();
     // console.log("Service===>", Service)
 
     return (
@@ -57,18 +55,7 @@ const BookingCard = ({booking, showViewMoreButton=true}) => {
 
               <div className={classes.controls} style={{marginLeft: "8px"}}>
 
-                  {
-                    showViewMoreButton && (
-                      <>
-                        <Button color="primary"
-                        variant="contained"
-                        onClick={() => history.push(`/service/${Service._id}`)}
-                        >
-                          Show more
-                        </Button>
-                      </>
-                    )
-                  }
+                  <BookingModal orderedBy={orderedBy} session={session}/>
               </div>
 
             </div>
