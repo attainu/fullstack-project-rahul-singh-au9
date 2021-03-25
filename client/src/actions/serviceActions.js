@@ -59,6 +59,18 @@ export const updateService = async (token, data, serviceId) =>
   );
 
 
+// USER SERVICE BOOKINGS
+export const userServiceBookings = async (token) =>
+  await axios.get(
+    `${process.env.REACT_APP_API}/user-service-bookings`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+
 // availabe dates
 export const diffDays = (from, to) => {
 

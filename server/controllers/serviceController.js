@@ -1,5 +1,7 @@
 const serviceModel = require("../models/serviceModel");
 require("dotenv").config();
+const userModel = require("../models/userModel");
+const orderModel = require("../models/orderModel");
 
 
 // CREATE A NEW SERVICE
@@ -93,6 +95,23 @@ const updateService = async (req, res) => {
 }
 
 
+// GET USER'S SERVICES BOOKINGS
+const userServiceBookings = async (req, res) => {
+    try {
+        const userBookings = await orderModel.find({ orderedBy: req.user.id})
+        .select('session')
+        .populate('Service')
+        .populate('orderedBy', '_id')
+        .exec();
+        res.status(200).json(userBookings);
+    }
+
+    catch (err) {
+        res.status(404).send(err);
+    }
+}
+
+
 // const Image = async (req, res) => {
 //     try {
 //         const Service = await serviceModel.findById(req.params.serviceId).exec();
@@ -107,4 +126,4 @@ const updateService = async (req, res) => {
 //     }
 // }
 
-module.exports = { createService, getServices, getService, sellerServices, deleteService, updateService };
+module.exports = { createService, getServices, getService, sellerServices, deleteService, updateService, userServiceBookings };

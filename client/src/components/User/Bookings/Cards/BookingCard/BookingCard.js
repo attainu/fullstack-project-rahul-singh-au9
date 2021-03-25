@@ -1,0 +1,79 @@
+import React from 'react';
+import { useHistory, Link } from 'react-router-dom'
+import {Card, Button, CardContent, CardMedia, Typography} from '@material-ui/core';
+import {currencyFormatter} from '../../../../../actions/stripeAction';
+// import {diffDays} from '../../../../../actions/serviceActions';
+import useStyles from './styles';
+
+const BookingCard = ({booking, showViewMoreButton=true}) => {
+    // further destructing values from state
+    const { Service, orderedBy, session } = booking;
+    const classes = useStyles();
+    const history = useHistory();
+    // console.log("Service===>", Service)
+
+    return (
+        <Card className={classes.root}>
+            <CardMedia
+              className={classes.cover}
+              image={Service.image || "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"}
+              title={Service.title}
+            />
+
+            <div className={classes.details} style={{marginLeft: "20px"}}>
+
+                <CardContent className={classes.content}>
+                    <Typography component="h5" variant="h5" color="primary">
+                        {Service.title}  {
+                          currencyFormatter({
+                            amount: Service.price * 100,
+                            currency: "usd"
+                          })
+                        }
+                    </Typography>
+
+                    <Typography component="h5" variant="h5" color="primary">
+                        {Service.location}
+                    </Typography>
+
+                    <Typography component="p" variant="p" style={{fontSize: '15px', fontWeight: "bold"}}>
+                        {`${Service.content?.substring(0,200)}...`}
+                    </Typography>
+
+                    {/* <Typography component="h5" variant="h5">
+                        Availabe for {diffDays(Service.from, Service.to)} {''}
+                        {diffDays(Service.from, Service.to) <= 1 ? 'day': 'days'}
+                    </Typography> */}
+
+                    <Typography component="h6" variant="h6" color="primary">
+                        Available Bookings - { Service.total}
+                    </Typography>
+
+                    <Typography component="h6" variant="h6">
+                        Available from - {new Date(Service.from).toLocaleDateString()}
+                    </Typography>
+
+                </CardContent>
+
+              <div className={classes.controls} style={{marginLeft: "8px"}}>
+
+                  {
+                    showViewMoreButton && (
+                      <>
+                        <Button color="primary"
+                        variant="contained"
+                        onClick={() => history.push(`/service/${Service._id}`)}
+                        >
+                          Show more
+                        </Button>
+                      </>
+                    )
+                  }
+              </div>
+
+            </div>
+        </Card>
+    );
+}
+
+export default BookingCard;
