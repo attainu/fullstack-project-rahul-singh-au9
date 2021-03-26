@@ -1,32 +1,33 @@
-import React from 'react'
 import {Link} from 'react-router-dom';
-import useStyles from "./styles";
-import { Grow, Container, Grid, Button } from "@material-ui/core";
+import { Grow, Container, Grid, Button } from '@material-ui/core';
+import Bookings from '../Bookings/Bookings';
 
 
 const UserDashboard = () => {
-  // const classes = useStyles();
-  return (
-      <Grow in>
-      <Container>
-          <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+    return (
+        // <pre> {JSON.stringify(bookings, null, 4)} </pre>
+        <Grow in>
+        <Container>
+            <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
-              <Grid item xs={12} sm={7}>
-                    <h1> Your Bookings </h1>
-              </Grid>
+                <Grid item xs={12} sm={12} style={{display: 'flex'}}>
+                    <h1 style={{marginLeft: '30px'}}>Your Bookings</h1>
 
-              <Grid item xs={12} sm={4}>
-                <Link to='/'>
-                  <Button variant="contained"  color="primary" >
-                      Browse Services
-                  </Button>
-                </Link>
-              </Grid>
-
-          </Grid>
-      </Container>
-    </Grow>
-  )
+                    <Link to='/'>
+                        <Button
+                        variant="contained"
+                        color="primary"
+                        style={{marginTop: '8px', marginLeft: '700px'}}
+                        >
+                        Browse Services
+                        </Button>
+                    </Link>
+                </Grid>
+            </Grid>
+            <Bookings/>
+        </Container>
+        </Grow>
+    )
 }
 
 export default UserDashboard

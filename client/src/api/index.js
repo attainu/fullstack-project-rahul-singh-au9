@@ -17,3 +17,6 @@ export const signIn = (formData) => API.post("/user/signin", formData);
 
 // CREATE_STRIPE_ACCOUNT
 export const createStripeAccount = () => API.post("/createStripeAccount",{});
+
+// GET ACCOUNT STATUS
+export const getAccountStatus = () => API.post("/get-account-status", {});

@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const SECRET = "this is the super secret for hashing the user password";
 
+// USER SIGN-UP
 const signup = async (req, res) => {
 
   const {firstName, lastName, city, phone, email, password } = req.body;
@@ -42,7 +43,7 @@ const signup = async (req, res) => {
         email: result.email,
         city: result.city,
         createdAt: result.createdAt,
-        updatedAt: result.updatedAt
+        updatedAt: result.updatedAt,
     }, token});
 
   }catch(err){
@@ -54,6 +55,7 @@ const signup = async (req, res) => {
 };
 
 
+// USER LOG-IN
 const signin = async (req, res) => {
 
   const {email, password } = req.body;
@@ -89,7 +91,10 @@ const signin = async (req, res) => {
         email: oldUser.email,
         city: oldUser.city,
         createdAt: oldUser.createdAt,
-        updatedAt: oldUser.updatedAt
+        updatedAt: oldUser.updatedAt,
+        stripe_account_id: oldUser.stripe_account_id,
+        stripe_seller: oldUser.stripe_seller,
+        stripeSession: oldUser.stripeSession
     }, token})
     
   } catch (error) {

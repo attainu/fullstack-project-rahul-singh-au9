@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 require("./db/connection");
 const userRoutes = require("./routes/userRouter");
+const stripeRoutes = require("./routes/stripeRouter");
+const serviceRoutes = require("./routes/serviceRouter");
 require("dotenv").config();
 const morgan = require("morgan");
 
@@ -28,7 +30,13 @@ app.get("/", (req, res)=>{
 
 
 // USER ROUTES
-app.use("/user", userRoutes)
+app.use("/user", userRoutes);
+
+// STRIPE ROUTES
+app.use("",stripeRoutes);
+
+// SERVICE ROUTES
+app.use("", serviceRoutes);
 
 // ROUTES THAT NOT BEEN DEFINED
 app.get("*", (req, res) => {

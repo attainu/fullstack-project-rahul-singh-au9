@@ -7,6 +7,7 @@ import { GoogleLogin } from 'react-google-login';
 import {AUTH} from '../../constants/actionTypes';
 import {signup, signin} from '../../actions/authActions';
 import useStyles from './styles';
+import {toast} from 'react-toastify';
 import Input from './Input';
 import Icon from './Icon';
 
@@ -56,6 +57,7 @@ const Auth = () => {
         dispatch({ type: AUTH, data: { result, token } });
 
         history.push("/");
+        toast.success("Successfully signed-In...")
 
         } catch (error) {
         console.log(error);
