@@ -112,6 +112,23 @@ const userServiceBookings = async (req, res) => {
 }
 
 
+// CREATE A NEW SERVICE
+const searchListings = async (req, res) => {
+
+    const {location, searchValue} = req.body;
+    // console.log({location, searchValue});
+
+    try {
+        const SearchResults = await serviceModel.find({ location })
+        .exec();
+        res.status(200).json(SearchResults);
+    }
+    catch (err) {
+        res.status(404).send(err);
+    }
+};
+
+
 // const Image = async (req, res) => {
 //     try {
 //         const Service = await serviceModel.findById(req.params.serviceId).exec();
@@ -126,4 +143,4 @@ const userServiceBookings = async (req, res) => {
 //     }
 // }
 
-module.exports = { createService, getServices, getService, sellerServices, deleteService, updateService, userServiceBookings };
+module.exports = { createService, getServices, getService, sellerServices, deleteService, updateService, userServiceBookings, searchListings };

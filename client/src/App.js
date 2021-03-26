@@ -21,6 +21,7 @@ import CleaningAndPest from './components/Services/optionService/Cleaning/Cleani
 import PlumbCarpPaint from './components/Services/optionService/PCP/PlumbCarpPaint';
 import StripeSuccess from './components/User/Stripe/StripeSuccess';
 import StripeCancel from './components/User/Stripe/StripeCancel';
+import SearchResults from './components/Services/SearchResults/SearchResults';
 
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
                     <Route exact path='/services/PlumbCarpPaint' component={PlumbCarpPaint}/>
                     <ProtectedRoute exact path='/stripe/success/:serviceId' component={StripeSuccess}/>
                     <ProtectedRoute exact path='/service/cancel' component={StripeCancel}/>
+                    <Route exact path='/search-results' component={SearchResults}/>
                 </Switch>
             </div>
         </BrowserRouter>

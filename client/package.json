@@ -18,6 +18,7 @@
     "jwt-decode": "^3.1.2",
     "material-ui-search-bar": "^1.0.0",
     "moment": "^2.29.1",
+    "query-string": "^7.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-facebook-login": "^4.1.1",
