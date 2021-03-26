@@ -1,28 +1,29 @@
 {
   "name": "urban-services",
   "version": "1.0.0",
-  "description": "services and store app",
+  "description": "home services and products similar to urban company and amazon features combined in one",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon -r esm index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "rahul-singh-au9"
   },
-  "author": "Rahul singh and Kushal D jain",
+  "author": "rahul and kushal",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "cloudinary": "^1.25.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.18",
-    "multer": "^1.4.2",
+    "mongoose": "^5.11.19",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
+    "stripe": "^8.138.0",
     "validator": "^13.5.2"
   }
 }

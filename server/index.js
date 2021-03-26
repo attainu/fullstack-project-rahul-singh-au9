@@ -1,19 +1,26 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 require("./db/connection");
-const dotenv = require("dotenv");
-dotenv.config();
+const userRoutes = require("./routes/userRouter");
+require("dotenv").config();
+const morgan = require("morgan");
 
+const PORT = 3001
 
 // Init app
 const app = express();
 
-app.use(express.json());
+// middlewares
+
+// to communicate between different origins
 app.use(cors());
 
+// for post requests
+app.use(express.json());
 
-const ProductRoutes = require('./routes/ProductRoutes')
+// to get info when a route is being hit
+app.use(morgan("dev"));
+
 // HOMEPAGE
 app.get("/", (req, res)=>{
   res.send("HOME")
@@ -21,6 +28,8 @@ app.get("/", (req, res)=>{
 
 
 app.use('/api',ProductRoutes)
+// USER ROUTES
+app.use("/user", userRoutes)
 
 // ROUTES THAT NOT BEEN DEFINED
 app.get("*", (req, res) => {
@@ -28,7 +37,7 @@ app.get("*", (req, res) => {
 })
 
 // CONNECTING TO THE SERVER
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port: http://localhost:${process.env.PORT}`)
+app.listen(PORT, () => {
+  console.log(`Server running on port: http://localhost:${PORT}`)
 }
 )
