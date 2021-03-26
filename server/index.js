@@ -27,7 +27,6 @@ app.get("/", (req, res)=>{
 })
 
 
-app.use('/api',ProductRoutes)
 // USER ROUTES
 app.use("/user", userRoutes)
 
