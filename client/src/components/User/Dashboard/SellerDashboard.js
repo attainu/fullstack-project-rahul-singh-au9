@@ -61,7 +61,7 @@ const SellerDashboard = () => {
                         <Button
                         variant="contained"
                         color="primary"
-                        style={{marginTop: '26px', marginLeft: '700px'}}
+                        style={{marginTop: '8px', marginLeft: '700px'}}
                         >
                         + Add Service
                         </Button>

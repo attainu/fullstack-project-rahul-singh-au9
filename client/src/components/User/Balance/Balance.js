@@ -35,7 +35,7 @@ const Balance = () => {
       console.log(res)
       setBalance(res.data)
     })
-  },[])
+  },[auth.token])
 
 
   return (

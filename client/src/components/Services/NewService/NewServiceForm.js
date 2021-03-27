@@ -1,14 +1,7 @@
 import { TextField, Button, Typography, Paper, FormControl, Select, InputLabel } from '@material-ui/core';
 import FileBase from 'react-file-base64';
-import AlgoliaPlaces from 'algolia-places-react';
 import useStyles from './styles';
 
-const config = {
-    appId: process.env.REACT_APP_ALGOLIA_APP_ID,
-    apiKey: process.env.REACT_APP_ALGOLIA_API_KEY,
-    language: 'en',
-    countries: ['in']
-}
 
 const NewServiceForm = (props) => {
 
@@ -76,15 +69,22 @@ const NewServiceForm = (props) => {
                     </Select>
                 </FormControl>
 
-                <AlgoliaPlaces
-                name='location'
-                value={location}
-                placeholder='Location'
-                options={config}
-                // onChange = {({suggestion}) => setValues({...values, location: suggestion.value})}
-                onChange={({ suggestion }) => setLocation(suggestion.value)}
-                style={{ height:"60px" ,width:"1183px", marginTop:"8px" }}
-                />
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="service">Location</InputLabel>
+                    <Select
+                    name='location'
+                    value={location}
+                    native
+                    onChange={(e) => setLocation(e.target.value )}
+                    >
+                    <option aria-label="None" value="" />
+                    <option value={"lucknow"}>Lucknow</option>
+                    <option value={"delhi"}>Delhi</option>
+                    <option value={"mumbai"}>Mumbai</option>
+                    <option value={"hyderabad"}>Hyderabad</option>
+                    <option value={"bangalore"}>bangalore</option>
+                    </Select>
+                </FormControl>
 
                 <TextField
                 name="price"

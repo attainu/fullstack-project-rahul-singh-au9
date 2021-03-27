@@ -1,14 +1,6 @@
 import { TextField, Button, Typography, Paper, FormControl, Select, InputLabel } from '@material-ui/core';
 import FileBase from 'react-file-base64';
-import AlgoliaPlaces from 'algolia-places-react';
 import useStyles from './styles';
-
-const config = {
-    appId: process.env.REACT_APP_ALGOLIA_APP_ID,
-    apiKey: process.env.REACT_APP_ALGOLIA_API_KEY,
-    language: 'en',
-    countries: ['in']
-}
 
 const EditServiceForm = (props) => {
 
@@ -78,14 +70,23 @@ const EditServiceForm = (props) => {
 
                 {
                 location &&
-                    <AlgoliaPlaces
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="service">Location</InputLabel>
+                    <Select
                     name='location'
                     value={location}
-                    placeholder='Location'
-                    options={config}
-                    onChange = {({suggestion}) => setValues({...values, location: suggestion.value})}
-                    style={{ height:"60px" ,width:"1183px", marginTop:"8px" }}
-                    />
+                    native
+                    onChange={(e) => setValues({ ...values, location: e.target.value })}
+
+                    >
+                    <option aria-label="None" value="" />
+                    <option value={"lucknow"}>Lucknow</option>
+                    <option value={"delhi"}>Delhi</option>
+                    <option value={"mumbai"}>Mumbai</option>
+                    <option value={"hyderabad"}>Hyderabad</option>
+                    <option value={"bangalore"}>bangalore</option>
+                    </Select>
+                </FormControl>
                 }
 
                 <TextField
@@ -109,7 +110,7 @@ const EditServiceForm = (props) => {
                 />
 
                 {
-                  from &&
+                from &&
                     <TextField
                     label="From"
                     name="from"
@@ -125,7 +126,7 @@ const EditServiceForm = (props) => {
                 }
 
                 {
-                  to &&
+                to &&
                     <TextField
                     label="To"
                     name="to"

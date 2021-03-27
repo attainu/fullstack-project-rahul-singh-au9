@@ -17,14 +17,15 @@ const Search = () => {
 
     return (
       <div>
-          <FormControl variant="filled" className={classes.formControl}>
-              <InputLabel>Location</InputLabel>
+          <FormControl variant='filled' className={classes.formControl}>
+              <InputLabel style={{color: 'white'}}>Location</InputLabel>
               <Select
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                label="Location"
+                label='Location'
+                style={{color: 'white'}}
               >
-                <MenuItem value="">
+                <MenuItem value=''>
                     <em>None</em>
                 </MenuItem>
                 <MenuItem value={'Lucknow'}>Lucknow</MenuItem>
@@ -36,11 +37,12 @@ const Search = () => {
           </FormControl>
 
           <TextField
-          label="Search for a Service..."
-          variant="filled"
+          label='Search for a Service...'
+          variant='filled'
           className={classes.root}
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
+          style={{color: 'white'}}
           />
 
           <SearchIcon

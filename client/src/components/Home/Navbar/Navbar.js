@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import useStyles from "./styles";
-import {AppBar, Typography, Toolbar, Avatar, Button} from "@material-ui/core";
+import { Typography, Toolbar, Avatar, Button } from "@material-ui/core";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import {LOGOUT} from "../../../constants/actionTypes";
 import decode from 'jwt-decode';
