@@ -7,7 +7,7 @@ const serviceRoutes = require("./routes/serviceRouter");
 require("dotenv").config();
 const morgan = require("morgan");
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001;
 
 // Init app
 const app = express();
