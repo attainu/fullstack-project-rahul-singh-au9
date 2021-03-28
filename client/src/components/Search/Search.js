@@ -36,14 +36,14 @@ const Search = () => {
               </Select>
           </FormControl>
 
-          <TextField
+          {/* <TextField
           label='Search for a Service...'
           variant='filled'
           className={classes.root}
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           style={{color: 'white'}}
-          />
+          /> */}
 
           <SearchIcon
           style={{ fontSize: 44, marginLeft: '4px', marginTop: '5px', color: 'white', cursor: 'pointer' }}

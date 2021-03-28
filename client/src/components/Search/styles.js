@@ -11,7 +11,7 @@ export default makeStyles((theme) => ({
     },
   },
   formControl: {
-    minWidth: 200,
+    minWidth: 400,
     color: 'white'
   },
   selectEmpty: {

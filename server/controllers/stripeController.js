@@ -153,7 +153,7 @@ const stripeSessionId = async (req, res) => {
 
       // 6 create payment intent with application fee and destination charge 80%
       payment_intent_data: {
-          // application_fee_amount: fee * 100,
+          application_fee_amount: fee * 100,
           // this seller can see his balance in our frontend dashboard
           transfer_data: {
             destination: stripeSellerId,

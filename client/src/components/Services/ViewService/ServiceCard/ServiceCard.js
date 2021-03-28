@@ -68,10 +68,9 @@ const ServiceCard = ({ service, match }) => {
                       { loading ? "loading..." : auth && auth.token ? "Book Now" : "Log-in to Book"}
                   </Button>
               </div>
-
             </div>
         </Card>
-    );
+    )
 }
 
 export default ServiceCard;

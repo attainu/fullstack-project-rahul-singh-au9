@@ -49,7 +49,7 @@ const Balance = () => {
               </Typography>
               <br/>
 
-              <Typography variant="body2" component="p" style={{ marginLeft: '80px' }}>
+              <Typography variant="body2" component="p" style={{ marginLeft: '40px' }}>
                   {
                     balance && balance.pending && balance.pending.map((ba, i ) =>(
                       <span key={i} style={{fontSize: 35}}>
