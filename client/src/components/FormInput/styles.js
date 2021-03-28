@@ -9,9 +9,9 @@ export default makeStyles((theme) => ({
 
   paper: {
     padding: theme.spacing(2),
-    maxWidth: '1200px',
-    marginLeft: '6%',
-    marginTop: '10px',
+    maxWidth: '1000px',
+    marginLeft: '14%',
+    marginTop: '12px',
   },
 
   form: {
@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
   },
 
   fileInput: {
-    width: "97%",
+    width: "90%",
     margin: "10px 0",
   },
 
@@ -37,7 +37,7 @@ export default makeStyles((theme) => ({
 
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 200,
+    minWidth: 180,
   },
 
   selectEmpty: {

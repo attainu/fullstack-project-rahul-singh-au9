@@ -22,7 +22,7 @@ import PlumbCarpPaint from './components/Services/optionService/PCP/PlumbCarpPai
 import StripeSuccess from './components/User/Stripe/StripeSuccess';
 import StripeCancel from './components/User/Stripe/StripeCancel';
 import SearchResults from './components/Services/SearchResults/SearchResults';
-
+import BookingPage from './components/BookingPage/BookingPage';
 
 const App = () => {
     return (
@@ -48,6 +48,7 @@ const App = () => {
                     <ProtectedRoute exact path='/stripe/success/:serviceId' component={StripeSuccess}/>
                     <ProtectedRoute exact path='/service/cancel' component={StripeCancel}/>
                     <Route exact path='/search-results' component={SearchResults}/>
+                    <Route exact path='/confirm-booking/:serviceId' component={BookingPage}/>
                 </Switch>
             </div>
         </BrowserRouter>

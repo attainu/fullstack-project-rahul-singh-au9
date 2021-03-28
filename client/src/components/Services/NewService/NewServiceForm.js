@@ -14,7 +14,10 @@ const NewServiceForm = (props) => {
     const minDate = new Date(Date.now());
 
     return (
-
+        <>
+        <h1 style={{marginTop: '18px'}}>
+            Add A New Service
+        </h1>
         <Paper className={classes.paper}>
 
             <form
@@ -23,9 +26,6 @@ const NewServiceForm = (props) => {
             className={`${classes.root} ${classes.form}`}
             onSubmit={handleSubmit}
             >
-                <Typography variant="h6">
-                    Add A New Service
-                </Typography>
 
                 <TextField
                 name="title"
@@ -164,6 +164,7 @@ const NewServiceForm = (props) => {
             {/* <pre>{JSON.stringify(values, null, 4)}</pre>
                 {JSON.stringify(location)} */}
         </Paper>
+    </>
     );
 };
 

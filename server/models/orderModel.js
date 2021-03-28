@@ -6,22 +6,22 @@ const {ObjectId} = mongoose.Schema
 // POST SCHEMA FOR VALIDATION
 const orderSchema = mongoose.Schema({
 
-  Service: {
-    type: ObjectId,
-    ref: "Service"
-  },
+    Service: {
+      type: ObjectId,
+      ref: "Service"
+    },
 
-  session: {},
+    session: {},
 
-  orderedBy: {
-    type: ObjectId,
-    ref: "User"
-  },
+    orderedBy: {
+      type: ObjectId,
+      ref: "User"
+    },
 
-  orderedAt: {
-    type: Date,
-    default: new Date()
-  },
+    orderedAt: {
+      type: Date,
+      default: new Date()
+    },
 
 }, {timestamps: true});
 

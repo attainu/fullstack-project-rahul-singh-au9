@@ -27,7 +27,7 @@ const ViewService = ({match}) => {
                 <Container>
                     <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
-                        <Grid item xs={12} sm={12}>
+                        <Grid item xs={12} sm={12} md={12} >
                             <ServiceCard service={service} match={match} />
                         </Grid>
 

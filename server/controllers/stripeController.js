@@ -127,6 +127,12 @@ const stripeSessionId = async (req, res) => {
     // 2 find the service based on service id from db
     const item = await serviceModel.findById(serviceId).exec();
     // console.log(item)
+    // console.log(item.createdBy)
+
+    const stripeSeller = await userModel.find({email: item.createdBy})
+    // console.log(stripeSeller)
+    // console.log(stripeSeller[0].stripe_account_id)
+    const stripeSellerId = stripeSeller[0].stripe_account_id;
 
     // 3 20% charge as application fee
     const fee = (item.price * 20) / 100;
@@ -150,10 +156,9 @@ const stripeSessionId = async (req, res) => {
           // application_fee_amount: fee * 100,
           // this seller can see his balance in our frontend dashboard
           transfer_data: {
-            destination: item.createdBy.stripe_account_id,
+            destination: stripeSellerId,
           },
       },
-
       // success and calcel urls
       success_url: `${process.env.STRIPE_SUCCESS_URL}/${item._id}`,
       cancel_url: process.env.STRIPE_CANCEL_URL,

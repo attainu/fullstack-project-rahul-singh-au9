@@ -2,9 +2,8 @@ import {useState} from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Card, Button, CardContent, CardMedia, Typography } from '@material-ui/core';
-import { currencyFormatter, getSesstionId } from '../../../../actions/stripeAction';
+import { currencyFormatter } from '../../../../actions/stripeAction';
 import useStyles from './styles';
-import {loadStripe} from '@stripe/stripe-js';
 
 const ServiceCard = ({ service, match }) => {
 
@@ -21,17 +20,7 @@ const ServiceCard = ({ service, match }) => {
           return;
       }
       setLoading(true);
-
-      // console.log(auth.token, match, match.params.serviceId)
-      let res = await getSesstionId(auth.token, match.params.serviceId);
-      // console.log("GET SESSION RESPONSE ===>", res.data.sessionId);
-
-      const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY);
-      
-      stripe.redirectToCheckout({
-          sessionId: res.data.sessionId
-      })
-      .then((result) => console.log(result));
+      history.push(`/confirm-booking/${match.params.serviceId}`)
   }
 
     return (
