@@ -13,16 +13,21 @@ import StripeCallback from './components/User/Stripe/StripeCallback';
 import NewService from './components/Services/NewService/NewService';
 import EditService from './components/Services/EditService/EditService';
 import ViewService from './components/Services/ViewService/ViewService';
+import ViewProduct from './components/Products/ViewProduct/ViewProduct';
 import ServicesHome from './components/Services/ServicesHome/Home';
+import ProductsHome from './components/Products/ProductsHome/Home';
 import ElectriansAndAC from './components/Services/optionService/Electricians/ElectriansAndAC'
 import Men from './components/Services/optionService/Men/Men';
 import Women from './components/Services/optionService/Women/Women';
 import CleaningAndPest from './components/Services/optionService/Cleaning/CleaningAndPest';
 import PlumbCarpPaint from './components/Services/optionService/PCP/PlumbCarpPaint';
 import StripeSuccess from './components/User/Stripe/StripeSuccess';
+import StripeSuccessProduct from './components/User/Stripe/StripeSuccessProduct';
 import StripeCancel from './components/User/Stripe/StripeCancel';
 import SearchResults from './components/Services/SearchResults/SearchResults';
 import BookingPage from './components/BookingPage/BookingPage';
+import BookingPageProduct from './components/BookingPage/BookingPageProduct';
+
 
 const App = () => {
     return (
@@ -39,16 +44,20 @@ const App = () => {
                     <ProtectedRoute exact path='/services/new' component={NewService}/>
                     <ProtectedRoute exact path='/service/edit/:serviceId' component={EditService}/>
                     <Route exact path='/services' component={ServicesHome}/>
+                    <Route exact path='/products' component={ProductsHome}/>
                     <Route exact path='/service/:serviceId' component={ViewService}/>
+                    <Route exact path='/product/:productId' component={ViewProduct}/>
                     <Route exact path='/services/Electrians&AC' component={ElectriansAndAC}/>
                     <Route exact path='/services/Men' component={Men}/>
                     <Route exact path='/services/Women' component={Women}/>
                     <Route exact path='/services/CleaningAndPest' component={CleaningAndPest}/>
                     <Route exact path='/services/PlumbCarpPaint' component={PlumbCarpPaint}/>
                     <ProtectedRoute exact path='/stripe/success/:serviceId' component={StripeSuccess}/>
+                    <ProtectedRoute exact path='/stripe/success/product/:productId' component={StripeSuccessProduct}/>
                     <ProtectedRoute exact path='/service/cancel' component={StripeCancel}/>
                     <Route exact path='/search-results' component={SearchResults}/>
                     <Route exact path='/confirm-booking/:serviceId' component={BookingPage}/>
+                    <Route exact path='/confirm-booking-product/:productId' component={BookingPageProduct}/>
                 </Switch>
             </div>
         </BrowserRouter>

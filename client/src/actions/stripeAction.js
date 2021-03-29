@@ -114,11 +114,37 @@ export const getSesstionId = async (token, serviceId) =>
     }
   );
 
+// BOOKING GET STRIPE SESSION ID
+export const getSesstionIdProduct = async (token, productId) =>
+  await axios.post(
+    `${process.env.REACT_APP_API}/stripe-session-id-product`,
+    {
+      productId
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
 
 // STRIPE SUCCESS REQUEST
 export const stripeSuccessRequest = async (token, serviceId) =>
     await axios.post(
       `${process.env.REACT_APP_API}/stripe-success`,{serviceId},
+      {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      }
+    )
+
+
+// STRIPE SUCCESS REQUEST
+export const stripeSuccessRequestProduct = async (token, productId) =>
+    await axios.post(
+      `${process.env.REACT_APP_API}/stripe-success-product`,{productId},
       {
       headers: {
         Authorization: `Bearer ${token}`,

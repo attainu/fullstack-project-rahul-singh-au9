@@ -8,11 +8,10 @@ import useStyles from './styles'
 const Search = () => {
     const classes = useStyles();
     const [location, setLocation] = useState('');
-    const [searchValue, setSearchValue] = useState('');
     const history = useHistory();
 
     const handleSubmit = async (e) => {
-      history.push(`/search-results?location=${location}&searchValue=${searchValue}`)
+      history.push(`/search-results?location=${location}`)
     }
 
     return (

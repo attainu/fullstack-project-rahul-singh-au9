@@ -4,6 +4,8 @@ require("./db/connection");
 const userRoutes = require("./routes/userRouter");
 const stripeRoutes = require("./routes/stripeRouter");
 const serviceRoutes = require("./routes/serviceRouter");
+const productRoutes = require("./routes/productRouter");
+
 require("dotenv").config();
 const morgan = require("morgan");
 
@@ -37,6 +39,9 @@ app.use("",stripeRoutes);
 
 // SERVICE ROUTES
 app.use("", serviceRoutes);
+
+// PRODUCT ROUTES
+app.use("", productRoutes);
 
 // ROUTES THAT NOT BEEN DEFINED
 app.get("*", (req, res) => {

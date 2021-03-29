@@ -10,10 +10,10 @@ const SearchResults = () => {
 
     useEffect(() => {
 
-      const {location, searchValue} = queryString.parse(window.location.search)
+      const { location } = queryString.parse(window.location.search)
       // console.table({location, searchValue})
 
-      searchListings({location, searchValue}).then(res => {
+      searchListings({ location }).then(res => {
         // console.log(res.data)
         setServices(res.data)
       })

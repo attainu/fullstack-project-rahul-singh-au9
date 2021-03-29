@@ -25,7 +25,7 @@ const createService = async (req, res) => {
 const getServices = async (req, res) => {
     try {
         const services = await serviceModel.find({to: {$gte: new Date()}})
-        .limit(24);
+        .limit(34);
 
         res.status(200).json(services);
     }
@@ -115,7 +115,7 @@ const userServiceBookings = async (req, res) => {
 // CREATE A NEW SERVICE
 const searchListings = async (req, res) => {
 
-    const {location, searchValue} = req.body;
+    const { location } = req.body;
     // console.log({location, searchValue});
 
     try {

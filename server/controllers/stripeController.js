@@ -1,6 +1,8 @@
 const userModel = require("../models/userModel");
 const serviceModel = require("../models/serviceModel");
 const orderModel = require("../models/orderModel");
+const productModel = require("../models/productModel");
+const productOrderModel = require("../models/productOrderModel");
 require("dotenv").config();
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET);
@@ -179,6 +181,70 @@ const stripeSessionId = async (req, res) => {
 }
 
 
+// STRIPE SESSION-ID
+const stripeSessionIdProduct = async (req, res) => {
+
+    // console.log("you hit stripe session id", req.body.serviceId);
+
+    // 1 get hotel id from req.body
+    const { productId } = req.body;
+
+    try {
+
+    // 2 find the service based on service id from db
+    const item = await productModel.findById(productId).exec();
+    // console.log(item)
+    // console.log(item.createdBy)
+
+    const stripeSeller = await userModel.find({email: item.createdBy})
+    // console.log(stripeSeller)
+    // console.log(stripeSeller[0].stripe_account_id)
+    const stripeSellerId = stripeSeller[0].stripe_account_id;
+
+    // 3 20% charge as application fee
+    const fee = (item.price * 20) / 100;
+
+    // 4 create a session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+
+      // 5 purchasing item details, it will be shown to user on checkout
+      line_items: [
+        {
+          name: item.title,
+          amount: item.price * 100, // in cents
+          currency: "usd",
+          quantity: 1,
+        },
+      ],
+
+      // 6 create payment intent with application fee and destination charge 80%
+      payment_intent_data: {
+          application_fee_amount: fee * 100,
+          // this seller can see his balance in our frontend dashboard
+          transfer_data: {
+            destination: stripeSellerId,
+          },
+      },
+      // success and calcel urls
+      success_url: `${process.env.STRIPE_SUCCESS_URL_PRODUCT}/${item._id}`,
+      cancel_url: process.env.STRIPE_CANCEL_URL,
+    });
+
+    // 7 add this session object to user in the db
+    await userModel.findByIdAndUpdate(req.user.id, { stripeSession: session }).exec();
+
+    // 8 send session id as resposne to frontend
+    // console.log(req.user.id)
+    res.send({
+        sessionId: session.id,
+  });
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const stripeSuccess = async (req, res) => {
     // console.log("you hit the stripe success url");
 
@@ -224,4 +290,51 @@ const stripeSuccess = async (req, res) => {
     }
 }
 
-module.exports = {createStripeAccount, getAccountStatus, getAccountBalance, payoutSetting, stripeSessionId, stripeSuccess};
+
+const stripeSuccessProduct = async (req, res) => {
+    // console.log("you hit the stripe success url");
+
+    // 1. get the serviceId from body
+    const {productId} = req.body;
+
+    try {
+    // 2. find currently logged-in user
+    const user = await userModel.findById(req.user.id).exec();
+    // console.log(req.user)
+    // console.log(user)
+
+    // 3. retrieve stripeSession
+    const session = await stripe.checkout.sessions.retrieve(user.stripeSession.id)
+
+    // check if the user has stirpeSession
+    if(!user.stripeSession) return;
+
+    // 4. if session payment status is paid , create order
+    if(session.payment_status === "paid") {
+      // 5. check if order with that sessin id already exist by querying orders collection
+      const orderExist = await productOrderModel.findOne({"session.id": session.id}).exec();
+      if(orderExist) {
+        //  6. if order exist, send success true
+        res.json({success: true});
+      } else{
+        // 7. else create new order and send success true
+        let newOrder = await new productOrderModel({
+            Product: productId,
+            session,
+            orderedBy: user._id
+        }).save();
+
+        // 8. remove user's stripeSession
+        await userModel.findByIdAndUpdate(user.id, {
+          $set: {stripeSession: {}}
+        });
+        res.json({success: true});
+      }
+    }
+    } catch (error) {
+      console.log("STIPE SUCCESS ERROR ===>", error);
+    }
+}
+
+
+module.exports = {createStripeAccount, getAccountStatus, getAccountBalance, payoutSetting, stripeSessionId, stripeSuccess, stripeSessionIdProduct, stripeSuccessProduct };

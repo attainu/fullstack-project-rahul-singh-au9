@@ -63,7 +63,7 @@ function Navbar() {
   return (
     <>
       <nav className='navbar'>
-        <div className='navbar-container'>
+        <div className='navbar-container' style={{marginTop: '8px'}}>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
             US
             <i class='fab fa-typo3' />
@@ -73,7 +73,7 @@ function Navbar() {
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
 
-          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+          <ul className={click ? 'nav-menu active' : 'nav-menu'} style={{marginTop: '14px'}}>
             <li className='nav-item'>
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                 Home
@@ -88,7 +88,7 @@ function Navbar() {
                 Services
               </Link>
             </li>
-            {/* <li className='nav-item'>
+            <li className='nav-item'>
               <Link
                 to='/products'
                 className='nav-links'
@@ -96,8 +96,8 @@ function Navbar() {
               >
                 Products
               </Link>
-            </li> */}
-
+            </li>
+          <li className='nav-item' style={{marginTop: '10px'}}>
             <Toolbar className={classes.toolbar}>
 
               {
@@ -134,7 +134,7 @@ function Navbar() {
               }
 
             </Toolbar>
-
+          </li>
           </ul>
         </div>
       </nav>

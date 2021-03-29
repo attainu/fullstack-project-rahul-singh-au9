@@ -3,6 +3,7 @@ import { Container, Grow, Grid } from '@material-ui/core';
 import Cards from './Cards/Cards';
 import {useSelector} from 'react-redux';
 import {userServiceBookings} from '../../../actions/serviceActions';
+import ProductBookings from './ProductBookings'
 
 
 const Bookings = () => {
@@ -26,6 +27,7 @@ const Bookings = () => {
 
                     <Grid item xs={12} sm={12}>
                         <Cards bookings={bookings}/>
+                        <ProductBookings/>
                     </Grid>
                 </Grid>
             </Container>
