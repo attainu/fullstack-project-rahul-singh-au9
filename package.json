@@ -13,17 +13,22 @@
     "data:destroy": "node backend/seeder -d",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
-  "author": "Kushal",
+  "author": "Rahul and kushal",
   "dependencies": {
+    "@stripe/stripe-js": "^1.13.2",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
+    "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.6",
+    "mongoose": "^5.12.2",
     "morgan": "^1.10.0",
-    "multer": "^1.4.2"
+    "multer": "^1.4.2",
+    "query-string": "^7.0.0",
+    "stripe": "^8.140.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

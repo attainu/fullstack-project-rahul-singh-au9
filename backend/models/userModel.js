@@ -21,6 +21,9 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    stripe_account_id : "",
+    stripe_seller: {},
+    stripeSession: {},
   },
   {
     timestamps: true,

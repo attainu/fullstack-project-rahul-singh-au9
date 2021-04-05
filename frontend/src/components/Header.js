@@ -6,6 +6,8 @@ import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
 
+import { MDBIcon } from 'mdbreact'
+
 const Header = () => {
   const dispatch = useDispatch()
 
@@ -18,19 +20,24 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar style={{height:"120px"}} bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>URBAN CAP</Navbar.Brand>
+            <Navbar.Brand>US</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Route render={({ history }) => <SearchBox history={history} />} />
             
-            <Nav className='ml-auto'>
-            <LinkContainer to='/products'>
-            <Nav.Link>
-                <i className='fas fa-user'></i> Products
+            <Nav className='ml-auto'  style={{ height:"auto", fontSize:"0.7rem",display:"flex",flexWrap:"nowrap",justifyContent:"space-evenly",alignItems:"center",backgroundColor:"#1A1717"}} >
+            <LinkContainer  to='/services'>
+            <Nav.Link >
+            <MDBIcon fab icon="servicestack" style={{marginRight:"5px"}} />Services
+              </Nav.Link>
+              </LinkContainer>
+            <LinkContainer  to='/products'>
+            <Nav.Link >
+               <MDBIcon  icon="store" style={{marginRight:"5px"}} />Products
               </Nav.Link>
               </LinkContainer>
               <LinkContainer to='/cart'>
@@ -38,8 +45,14 @@ const Header = () => {
                   <i className='fas fa-shopping-cart'></i> Cart
                 </Nav.Link>
               </LinkContainer>
-              {userInfo ? (            
-                <NavDropdown title={userInfo.name} id='username'>
+              {userInfo ? (    
+                <>        
+                  <LinkContainer to='/dashboard'>
+                  <Nav.Link>
+                  Dashboard
+                  </Nav.Link>
+                  </LinkContainer>
+                <NavDropdown style={{paddingTop:"20px"}} title={userInfo.name} id='username'>
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
@@ -47,6 +60,7 @@ const Header = () => {
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
+                </>
               ) : (
                 <LinkContainer to='/login'>
                   <Nav.Link>
@@ -55,7 +69,7 @@ const Header = () => {
                 </LinkContainer>
               )}
               {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Admin' id='adminmenu'>
+                <NavDropdown  style={{marginTop:"40px"}}  title='Admin' id='adminmenu'>
                   <LinkContainer to='/admin/userlist'>
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>

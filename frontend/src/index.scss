@@ -24,11 +24,8 @@ h2 {
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 .carousel-caption {
   position: absolute;
   top: 0;
@@ -46,14 +43,11 @@ h2 {
   margin-left: auto;
   margin-right: auto;
 }
-
 .carousel a {
   margin: 0 auto;
 }
-
 @media (max-width: 900px) {
   .carousel-caption h2 {
     font-size: 2.5vw;
   }
 }
-/*# sourceMappingURL=index.css.map */
