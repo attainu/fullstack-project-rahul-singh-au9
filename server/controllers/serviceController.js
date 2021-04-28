@@ -33,7 +33,7 @@ const getServices = async (req, res) => {
     catch (err) {
         res.status(404).send(err);
     }
-}
+};
 
 
 // GET SINGLE SERVICE
@@ -129,6 +129,81 @@ const searchListings = async (req, res) => {
 };
 
 
+// GET ALL SERVICES REQUESTS
+const getServicesCategoryWomen = async (req, res) => {
+    try {
+        const services = await serviceModel.find({option: "Women" || "Salon For Women" || "Message for Women" })
+        .limit(10);
+
+        res.status(200).json(services);
+    }
+
+    catch (err) {
+        res.status(404).send(err);
+    }
+};
+
+
+// GET ALL SERVICES REQUESTS
+const getServicesCategoryMen = async (req, res) => {
+    try {
+        const services = await serviceModel.find({option: "Men" || "Salon For Men" || "Message for Men" })
+        .limit(10);
+
+        res.status(200).json(services);
+    }
+
+    catch (err) {
+        res.status(404).send(err);
+    }
+};
+
+
+// GET ALL SERVICES REQUESTS
+const getServicesCategoryCleaningAndPest = async (req, res) => {
+    try {
+        const services = await serviceModel.find({option: "Cleaning" || "Cleaning and disinfection" || "Pest Control" })
+        .limit(10);
+
+        res.status(200).json(services);
+    }
+
+    catch (err) {
+        res.status(404).send(err);
+    }
+};
+
+
+// GET ALL SERVICES REQUESTS
+const getServicesCategoryElectriansAndAC = async (req, res) => {
+    try {
+        const services = await serviceModel.find({option: "Electricians" || "Ac Service and Repair"})
+        .limit(10);
+
+        res.status(200).json(services);
+    }
+
+    catch (err) {
+        res.status(404).send(err);
+    }
+};
+
+
+// GET ALL SERVICES REQUESTS
+const getServicesCategoryPlumbCarpPaint = async (req, res) => {
+    try {
+        const services = await serviceModel.find({option: "Painters"})
+        .limit(10);
+
+        res.status(200).json(services);
+    }
+
+    catch (err) {
+        res.status(404).send(err);
+    }
+};
+
+
 // const Image = async (req, res) => {
 //     try {
 //         const Service = await serviceModel.findById(req.params.serviceId).exec();
@@ -143,4 +218,4 @@ const searchListings = async (req, res) => {
 //     }
 // }
 
-module.exports = { createService, getServices, getService, sellerServices, deleteService, updateService, userServiceBookings, searchListings };
+module.exports = { createService, getServices, getService, sellerServices, deleteService, updateService, userServiceBookings, searchListings, getServicesCategoryWomen, getServicesCategoryMen, getServicesCategoryCleaningAndPest, getServicesCategoryElectriansAndAC, getServicesCategoryPlumbCarpPaint };

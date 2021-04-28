@@ -78,11 +78,11 @@ const NewServiceForm = (props) => {
                     onChange={(e) => setLocation(e.target.value )}
                     >
                     <option aria-label="None" value="" />
-                    <option value={"lucknow"}>Lucknow</option>
-                    <option value={"delhi"}>Delhi</option>
-                    <option value={"mumbai"}>Mumbai</option>
-                    <option value={"hyderabad"}>Hyderabad</option>
-                    <option value={"bangalore"}>bangalore</option>
+                    <option value={"Lucknow"}>Lucknow</option>
+                    <option value={"Delhi"}>Delhi</option>
+                    <option value={"Mumbai"}>Mumbai</option>
+                    <option value={"Hyderabad"}>Hyderabad</option>
+                    <option value={"Bangalore"}>bangalore</option>
                     </Select>
                 </FormControl>
 

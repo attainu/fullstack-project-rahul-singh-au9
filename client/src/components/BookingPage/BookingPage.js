@@ -11,7 +11,6 @@ const BookingPage = ({match} ) => {
     const { serviceId } = match.params
     const [loc, Setloc] = useState("")
     const [service, setService] = useState({});
-    const availablelocations = ['Delhi', 'Lucknow', 'Mumbai', 'Hyderabad', 'Bangalore'];
 
     useEffect(() => {
         fetchService();

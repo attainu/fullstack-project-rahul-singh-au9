@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { allServices } from '../../../../actions/serviceActions';
+import { allServicesMen } from '../../../../actions/serviceActions';
 import { Container, Grow, Grid } from '@material-ui/core';
 import Cards from './Cards/Cards';
 
@@ -11,13 +11,13 @@ const Men = () => {
     }, []);
 
     const fetchAllServices = async () => {
-        let res = await allServices();
+        let res = await allServicesMen();
         setServices(res.data);
     }
     console.log(services)
 
     return (
-        <Grow in>
+        <Grow in style={{marginTop: '25px'}}>
             <Container>
                 <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 

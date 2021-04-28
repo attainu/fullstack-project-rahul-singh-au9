@@ -18,6 +18,26 @@ export const createService = async (token, data) =>
 export const allServices = async () => await axios.get(`${process.env.REACT_APP_API}/services`);
 
 
+// GET ALL THE SERVICES
+export const allServicesWomen = async () => await axios.get(`${process.env.REACT_APP_API}/services/women`);
+
+
+// GET ALL THE SERVICES
+export const allServicesMen = async () => await axios.get(`${process.env.REACT_APP_API}/services/men`);
+
+
+// GET ALL THE SERVICES
+export const allServicesCleaning = async () => await axios.get(`${process.env.REACT_APP_API}/services/CleaningAndPest`);
+
+
+// GET ALL THE SERVICES
+export const allServicesElectricians = async () => await axios.get(`${process.env.REACT_APP_API}/services/Electrians&AC`);
+
+
+// GET ALL THE SERVICES
+export const allServicesPCP = async () => await axios.get(`${process.env.REACT_APP_API}/services/PlumbCarpPaint`);
+
+
 // GET SINGLE THE SERVICE
 export const singleService = async (serviceId) => await axios.get(`${process.env.REACT_APP_API}/service/${serviceId}`);
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory, Link } from 'react-router-dom'
 import {Card, Button, CardContent, CardMedia, Typography} from '@material-ui/core';
 import {currencyFormatter} from '../../../../../../actions/stripeAction';
-// import {diffDays} from '../../../../../actions/serviceActions';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import useStyles from './styles';
@@ -14,9 +13,6 @@ const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, show
 
     return (
       <>
-      {
-      service.option == ("Cleaning" || "Cleaning and disinfection" || "Pest Control") &&
-
         <Card className={classes.root}>
             <CardMedia
               className={classes.cover}
@@ -43,11 +39,6 @@ const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, show
                     <Typography component="p" variant="p" style={{fontSize: '15px', fontWeight: "bold"}}>
                         {`${service.content.substring(0,200)}...`}
                     </Typography>
-
-                    {/* <Typography component="h5" variant="h5">
-                        Availabe for {diffDays(service.from, service.to)} {''}
-                        {diffDays(service.from, service.to) <= 1 ? 'day': 'days'}
-                    </Typography> */}
 
                     <Typography component="h6" variant="h6" color="primary">
                         Available bookings - { service.total}
@@ -96,7 +87,6 @@ const ServiceCard = ({service, handleServiceDelete = (f) => f, owner=false, show
 
             </div>
         </Card>
-      }
     </>
     );
 }

@@ -9,7 +9,6 @@ const BookingPageProduct = ({match} ) => {
     const location = UseGeoLocation()
     const {lat,lng} = location.coordinates
     const { productId } = match.params
-    // console.log("id=======>",productId)
     const [loc, Setloc] = useState("")
     const [product, setProduct] = useState({});
 

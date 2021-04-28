@@ -17,7 +17,7 @@ const Home = () => {
 
     return (
         <Grow in>
-            <Container style={{marginTop: "45px"}}>
+            <Container style={{marginTop: "25px"}}>
                 <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
                     <Grid item xs={12} sm={12}>
